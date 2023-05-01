@@ -11,17 +11,27 @@ import java.awt.event.ActionListener;
 import java.awt.BorderLayout;
 import java.awt.FlowLayout;
 import javax.swing.BoxLayout;
+import javax.swing.ImageIcon;
+import java.awt.Image;
+
 
 public class main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Monopoly");
-        JPanel StartButton = new JPanel();
+        JButton StartButton = new JButton();
+        JPanel ButtonPanel = new JPanel();
+        ButtonPanel.setSize(1600, 100);
+        ButtonPanel.setLayout(new BorderLayout());
+
+        ImageIcon icon = new ImageIcon("res/startbutton.png");
+
+        Image startimg = icon.getImage();
+        Image resizedImage = startimg.getScaledInstance(1600, 100, java.awt.Image.SCALE_SMOOTH);
+        ImageIcon start_butIcon = new ImageIcon(resizedImage);
+        
         StartButton.setLayout(new BoxLayout(StartButton, BoxLayout.Y_AXIS));
 
-        JButton button = new JButton("Start Game");
-        button.setAlignmentX(JButton.CENTER_ALIGNMENT);
-        button.setPreferredSize(new Dimension(100, 50)); // Set button size
-        button.addActionListener(new ActionListener() {
+        StartButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
                 JPanel playerNumberPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
@@ -43,12 +53,13 @@ public class main {
             }
         });
 
-        StartButton.add(button);
+        StartButton.setIcon(start_butIcon);
+        ButtonPanel.add(StartButton);
         frame.getContentPane().setLayout(new BorderLayout());
         frame.getContentPane().add(new MenuDisplay(), BorderLayout.CENTER);
-        frame.getContentPane().add(StartButton, BorderLayout.SOUTH);
+        frame.getContentPane().add(ButtonPanel, BorderLayout.SOUTH);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setSize(800, 800);
+        frame.setSize(1600, 900);
         frame.setVisible(true);
     }
 }

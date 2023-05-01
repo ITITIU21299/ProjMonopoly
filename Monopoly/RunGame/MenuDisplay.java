@@ -16,13 +16,13 @@ public class MenuDisplay extends JPanel {
         try {
             // Load the image from file
             image = ImageIO.read(new File("res/menuimage.jpg"));
-            int width = 800;
+            int width = 1600;
             int height = 800;
             BufferedImage resizedImage = new BufferedImage(width, height, image.getType());
 
             // Draw the original image onto the new image with the desired size using Graphics2D
             Graphics2D g2d = resizedImage.createGraphics();
-            g2d.drawImage(image, 0, 0, 800, 800, null);
+            g2d.drawImage(image, 0, 0, 1600, 800, null);
             g2d.dispose();
 
             // Set the new resized image as the image to be displayed
