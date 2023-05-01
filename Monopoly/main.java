@@ -3,6 +3,7 @@ package Monopoly;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
+import javax.swing.JLabel;
 import java.awt.Dimension;
 import Monopoly.RunGame.MenuDisplay;
 import java.awt.event.ActionEvent;
@@ -22,19 +23,23 @@ public class main {
         button.setPreferredSize(new Dimension(100, 50)); // Set button size
         button.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
-                JFrame difficultyFrame = new JFrame("Choose Difficulty");
-                JPanel difficultyPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
-                JButton easyButton = new JButton("Easy");
-                JButton mediumButton = new JButton("Medium");
-                JButton hardButton = new JButton("Hard");
-                difficultyPanel.add(easyButton);
-                difficultyPanel.add(mediumButton);
-                difficultyPanel.add(hardButton);
-                difficultyFrame.getContentPane().add(difficultyPanel);
-                difficultyFrame.pack();
-                
-                difficultyFrame.setLocationRelativeTo(button.getParent());
-                difficultyFrame.setVisible(true);
+                frame.getContentPane().removeAll();
+                JPanel playerNumberPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
+                JLabel label = new JLabel("Choose number of players:");
+                JButton twoPButton = new JButton("2 players");
+                JButton threePButton = new JButton("3 players");
+                JButton fourPButton = new JButton("4 players");
+                playerNumberPanel.add(label);
+                playerNumberPanel.add(twoPButton);
+                playerNumberPanel.add(threePButton);
+                playerNumberPanel.add(fourPButton);
+                frame.getContentPane().setLayout(new BorderLayout());
+                frame.getContentPane().add(new MenuDisplay(), BorderLayout.CENTER);
+                frame.getContentPane().add(playerNumberPanel, BorderLayout.SOUTH);
+        
+                // Refresh frame to show the new components
+                frame.revalidate();
+                frame.repaint();
             }
         });
 
