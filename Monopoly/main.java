@@ -32,6 +32,8 @@ public class main {
                 difficultyPanel.add(hardButton);
                 difficultyFrame.getContentPane().add(difficultyPanel);
                 difficultyFrame.pack();
+                
+                difficultyFrame.setLocationRelativeTo(button.getParent());
                 difficultyFrame.setVisible(true);
             }
         });
