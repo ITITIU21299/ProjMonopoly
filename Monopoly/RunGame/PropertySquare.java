@@ -50,12 +50,7 @@ public class PropertySquare extends MonopolySquare {
     }
     else {
       int rent = getRentWithColorGroup();
-      if (player.getBalance() < rent) {
-        //K tra duoc phai muon tien
-      }
-      else {
-        player.payRentTo(player, rent);
-      }
+      player.payRentTo(player, rent);
     }
   }
 }
