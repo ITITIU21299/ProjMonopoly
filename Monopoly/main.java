@@ -14,26 +14,32 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
-
 public class main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Monopoly");
         JButton StartButton = new JButton();
-        JPanel ButtonPanel = new JPanel();
-        ButtonPanel.setSize(1600, 100);
-        ButtonPanel.setLayout(new BorderLayout());
+        //JPanel ButtonPanel = new JPanel();
+        JLabel myLabel = new JLabel();
+        //ButtonPanel.setSize(200, 100);
+        //ButtonPanel.setLayout(new BorderLayout());
+        JPanel menuD = new MenuDisplay();
+        menuD.setBounds(0, 0, 1600, 800);
 
-        ImageIcon icon = new ImageIcon("res/startbutton.png");
+        ImageIcon icon = new ImageIcon("Monopoly/res/startbutton.png");
 
         Image startimg = icon.getImage();
-        Image resizedImage = startimg.getScaledInstance(1600, 100, java.awt.Image.SCALE_SMOOTH);
+        Image resizedImage = startimg.getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);
         ImageIcon start_butIcon = new ImageIcon(resizedImage);
         
-        StartButton.setLayout(new BoxLayout(StartButton, BoxLayout.Y_AXIS));
+        //myLabel.setBounds(700, 700, 200, 100);
+        //StartButton.setLayout(new BoxLayout(StartButton, BoxLayout.Y_AXIS));
+        
+        //myLabel.add(StartButton);
 
         StartButton.addActionListener(new ActionListener() {
             public void actionPerformed(ActionEvent e) {
                 frame.getContentPane().removeAll();
+                /* 
                 JPanel playerNumberPanel = new JPanel(new FlowLayout(FlowLayout.CENTER));
                 JLabel label = new JLabel("Choose number of players:");
                 JButton twoPButton = new JButton("2 players");
@@ -43,10 +49,11 @@ public class main {
                 playerNumberPanel.add(twoPButton);
                 playerNumberPanel.add(threePButton);
                 playerNumberPanel.add(fourPButton);
-                frame.getContentPane().setLayout(new BorderLayout());
-                frame.getContentPane().add(new MenuDisplay(), BorderLayout.CENTER);
-                frame.getContentPane().add(playerNumberPanel, BorderLayout.SOUTH);
-        
+                playerNumberPanel.setBounds(700, 700, 1600, 100);
+                frame.getContentPane().setLayout(null);
+                frame.getContentPane().add(menuD);
+                frame.getContentPane().add(playerNumberPanel);
+                */
                 // Refresh frame to show the new components
                 frame.revalidate();
                 frame.repaint();
@@ -54,10 +61,20 @@ public class main {
         });
 
         StartButton.setIcon(start_butIcon);
-        ButtonPanel.add(StartButton);
-        frame.getContentPane().setLayout(new BorderLayout());
-        frame.getContentPane().add(new MenuDisplay(), BorderLayout.CENTER);
-        frame.getContentPane().add(ButtonPanel, BorderLayout.SOUTH);
+        //ButtonPanel.add(StartButton);
+        
+        frame.setLayout(null);
+        //frame.getContentPane().add(myLabel);
+        frame.getContentPane().setLayout(null);
+        //frame.getContentPane().add(new MenuDisplay(), BorderLayout.CENTER);
+        //frame.getContentPane().add(ButtonPanel, BorderLayout.SOUTH);
+        
+        
+        StartButton.setBounds(700, 800, 100, 50);
+        StartButton.setVisible(true);
+        frame.getContentPane().add(menuD);
+        frame.getContentPane().add(StartButton);
+        //frame.add(myLabel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1600, 900);
         frame.setVisible(true);
