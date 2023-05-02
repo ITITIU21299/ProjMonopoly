@@ -14,7 +14,6 @@ import javax.swing.BoxLayout;
 import javax.swing.ImageIcon;
 import java.awt.Image;
 
-
 public class main {
     public static void main(String[] args) {
         JFrame frame = new JFrame("Monopoly");
@@ -26,7 +25,7 @@ public class main {
         JPanel menuD = new MenuDisplay();
         menuD.setBounds(0, 0, 1600, 800);
 
-        ImageIcon icon = new ImageIcon("res/startbutton.png");
+        ImageIcon icon = new ImageIcon("Monopoly/res/startbutton.png");
 
         Image startimg = icon.getImage();
         Image resizedImage = startimg.getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);

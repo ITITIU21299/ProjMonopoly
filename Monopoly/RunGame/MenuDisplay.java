@@ -15,7 +15,7 @@ public class MenuDisplay extends JPanel {
     public MenuDisplay() {
         try {
             // Load the image from file
-            image = ImageIO.read(new File("res/menuimage.jpg"));
+            image = ImageIO.read(new File("Monopoly/res/menuimage.jpg"));
             int width = 1600;
             int height = 1100;
             BufferedImage resizedImage = new BufferedImage(width, height, image.getType());
