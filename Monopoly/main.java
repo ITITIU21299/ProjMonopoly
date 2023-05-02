@@ -27,9 +27,9 @@ public class main {
 
         ImageIcon icon = new ImageIcon("Monopoly/res/startbutton.png");
 
-        Image startimg = icon.getImage();
-        Image resizedImage = startimg.getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);
-        ImageIcon start_butIcon = new ImageIcon(resizedImage);
+        //Image startimg = icon.getImage();
+        //Image resizedImage = startimg.getScaledInstance(100, 50, java.awt.Image.SCALE_SMOOTH);
+        //ImageIcon start_butIcon = new ImageIcon(resizedImage);
         
         //myLabel.setBounds(700, 700, 200, 100);
         //StartButton.setLayout(new BoxLayout(StartButton, BoxLayout.Y_AXIS));
@@ -57,10 +57,10 @@ public class main {
                 // Refresh frame to show the new components
                 frame.revalidate();
                 frame.repaint();
-            }
+            }   
         });
 
-        StartButton.setIcon(start_butIcon);
+        StartButton.setIcon(icon);
         //ButtonPanel.add(StartButton);
         
         frame.setLayout(null);
@@ -70,7 +70,7 @@ public class main {
         //frame.getContentPane().add(ButtonPanel, BorderLayout.SOUTH);
         
         
-        StartButton.setBounds(700, 800, 100, 50);
+        StartButton.setBounds(700, 810, 80, 40);
         StartButton.setVisible(true);
         frame.getContentPane().add(menuD);
         frame.getContentPane().add(StartButton);

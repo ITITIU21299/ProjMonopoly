@@ -1,3 +1,5 @@
+package Monopoly.RunGame;
+
 public class Player {
   private String name;
   private int balance;

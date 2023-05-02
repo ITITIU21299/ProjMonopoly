@@ -1,10 +1,14 @@
-public class PropertySquare extends MonopolySquare {
+package Monopoly.RunGame;
+
+public class PropertySquare implements MonopolySquare {
+  private Board Board;
+  private String name;
   private int price;
   private int rent;
   private Player owner;
 
-  public PropertySquare(int price, int rent, Player owner) {
-    super(name);
+  public PropertySquare(int price, int rent, Player owner, String name) {
+    this.name = name;
     this.price = price;
     this.rent = rent;
     this.owner = owner;
@@ -22,7 +26,7 @@ public class PropertySquare extends MonopolySquare {
     return owner;
   }
 
-  public void setOwner(Player Player) {
+  public void setOwner(Player player) {
     owner = player;
   }
 
@@ -30,7 +34,7 @@ public class PropertySquare extends MonopolySquare {
     int numOwned = 0;
     for (MonopolySquare square : Board.getSquare()) {
       if (square instanceof PropertySquare && ((PropertySquare) square).getColor() == getColor()
-          && ((PropertySquare) square).getOwner() == owener) {
+          && ((PropertySquare) square).getOwner() == owner) {
         numOwned++;
       }
       if (numOwned == 3) {
@@ -52,5 +56,29 @@ public class PropertySquare extends MonopolySquare {
       int rent = getRentWithColorGroup();
       player.payRentTo(player, rent);
     }
+  }
+
+  @Override
+  public String getName() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getName'");
+  }
+
+  @Override
+  public String getType() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'getType'");
+  }
+
+  @Override
+  public boolean isOwned() {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'isOwned'");
+  }
+
+  @Override
+  public void landOn(Player player) {
+    // TODO Auto-generated method stub
+    throw new UnsupportedOperationException("Unimplemented method 'landOn'");
   }
 }
