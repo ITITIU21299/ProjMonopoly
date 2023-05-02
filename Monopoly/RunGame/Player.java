@@ -33,4 +33,9 @@ public class Player {
   public void subtractBalance(int amount) {
     balance -= amount;
   }
+
+  public void payRentTo(Player owner, int amount) {
+    balance -= amount;
+    owner.addBalance(amount);
+  }
 }
