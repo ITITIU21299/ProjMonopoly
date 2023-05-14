@@ -1,10 +1,20 @@
 package Monopoly;
 
+<<<<<<< HEAD
+import Monopoly.RunGame.MonopolyGame;
+
+public class main {
+    public static void main(String[] args) {
+        MonopolyGame game = new MonopolyGame();
+        game.setup();
+=======
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Dimension;
+
+import Monopoly.RunGame.Dice;
 import Monopoly.RunGame.MenuDisplay;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,8 +72,10 @@ public class main {
             }
         });
 
+        Dice dButton = new Dice();
+        frame.add(dButton);
         StartButton.setIcon(icon);
-        // ButtonPanel.add(StartButton);
+        //ButtonPanel.add(StartButton);
 
         frame.setLayout(null);
         // frame.getContentPane().add(myLabel);
@@ -79,5 +91,6 @@ public class main {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(1600, 900);
         frame.setVisible(true);
+>>>>>>> f6e66f6a12cb0c12adab58363853d07aeab386f0
     }
 }
