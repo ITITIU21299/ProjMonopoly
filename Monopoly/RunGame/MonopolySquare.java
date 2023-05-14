@@ -1,3 +1,5 @@
+package Monopoly.RunGame;
+
 public interface MonopolySquare {
   public String getName();
 
