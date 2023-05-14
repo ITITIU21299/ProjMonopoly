@@ -17,6 +17,8 @@ import javax.swing.ImageIcon;
 
 
 public class MonopolyGame {
+        public static final int BOARD_SIZE = 40;
+        public static final int GO_SQUARE_REWARD = 200;
         private boolean gameEnd=false;
         private JFrame frame;
         private int bankrupted;
