@@ -24,6 +24,14 @@ public class Player {
     return position;
   }
 
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public void setBalance(int balance) {
+    this.balance = balance;
+  }
+
   public void setPosition(int position) {
     this.position = position;
   }
