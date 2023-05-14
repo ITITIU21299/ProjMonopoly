@@ -10,6 +10,7 @@ public class Player {
   private List<PropertySquare> ownedProperties;
   private List<Card> chanceCards;
   private List<Card> communityChestCards;
+  private ArrayList<Card> getOutOfJailCards;
 
   public Player(String name, int balance, int position) {
     this.name = name;
@@ -88,9 +89,13 @@ public class Player {
   }
 
   public void moveBack(int numSpaces) {
-    int newPostion = (position - numSpaces + BOARD_SIZE) % BOARD_SIZE;
+    int newPostion = (position - numSpaces + 40) % 40;
     position = newPostion;
     System.out.println(name + " moved back " + numSpaces + " spaces.");
+  }
+
+  public void addGetOutOfJailCard(Card card) {
+    getOutOfJailCards.add(card);
   }
 
   public void purchaseProperty(PropertySquare property) {
