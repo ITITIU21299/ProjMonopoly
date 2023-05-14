@@ -5,6 +5,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JLabel;
 import java.awt.Dimension;
+
+import Monopoly.RunGame.Dice;
 import Monopoly.RunGame.MenuDisplay;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -62,8 +64,10 @@ public class main {
             }
         });
 
+        Dice dButton = new Dice();
+        frame.add(dButton);
         StartButton.setIcon(icon);
-        // ButtonPanel.add(StartButton);
+        //ButtonPanel.add(StartButton);
 
         frame.setLayout(null);
         // frame.getContentPane().add(myLabel);
