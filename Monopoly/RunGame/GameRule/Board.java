@@ -1,4 +1,4 @@
-package Monopoly.RunGame;
+package Monopoly.RunGame.GameRule;
 
 import javax.swing.JPanel;
 

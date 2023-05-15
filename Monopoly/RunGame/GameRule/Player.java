@@ -1,4 +1,4 @@
-package Monopoly.RunGame;
+package Monopoly.RunGame.GameRule;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -98,12 +98,62 @@ public class Player {
     getOutOfJailCards.add(card);
   }
 
+  public void useChanceCard(Card card) {
+    if (card.getType() == Card.CardType.CHANCE) {
+      String cardText = card.getText();
+      if (cardText.equals("Advance to GO. Collect 200$.")) {
+        moveToGo();
+        addBalance(200);
+      } else if (cardText.equals("Go Back 3 Spaces.")) {
+        moveBack(3);
+      } else if (cardText.equals("Speeding fine $15.")) {
+        subtractBalance(15);
+      } else if (cardText.equals("Get Out of Jail Free.")) {
+        addGetOutOfJailCard(card);
+      } else if (cardText.equals("Your building loan matures. Collect $150.")) {
+        addBalance(150);
+      }
+    }
+  }
+
+  public void useCommnutityChestCard(Card card) {
+    if (card.getType() == Card.CardType.COMMUNITY_CHEST) {
+      String cardText = card.getText();
+      if (cardText.equals("Advance to GO. Collect 200$.")) {
+        moveToGo();
+        addBalance(200);
+      }
+      else if (cardText.equals("Bank error in your favor. Collect $200.")) {
+        addBalance(200);
+      }
+      else if (cardText.equals("Get Out of Jail Free.")) {
+        addGetOutOfJailCard(card);
+      }
+      else if (cardText.equals("Receive $25 consultancy fee.")) {
+        addBalance(25);
+      }
+      else if (cardText.equals("You inherit $100.")) {
+        addBalance(100);
+      }
+    }
+  }
+
   public void purchaseProperty(PropertySquare property) {
     int propertyPrice = property.getPrice();
-    if(balance >= propertyPrice){
+    if (balance >= propertyPrice) {
       balance -= propertyPrice;
       property.setOwner(this);
       ownedProperties.add(property);
     }
+  }
+  
+  public int getRailroadCount() {
+    int railroadCount = 0;
+    for (PropertySquare property : ownedProperties) {
+      if (property instanceof RailroadSquare) {
+        railroadCount++;
+      }
+    }
+    return railroadCount;
   }
 }

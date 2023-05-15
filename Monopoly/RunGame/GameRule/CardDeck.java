@@ -1,4 +1,4 @@
-package Monopoly.RunGame;
+package Monopoly.RunGame.GameRule;
 
 import java.util.ArrayList;
 import java.util.List;
