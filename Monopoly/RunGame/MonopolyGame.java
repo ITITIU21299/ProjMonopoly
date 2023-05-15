@@ -25,7 +25,12 @@ public class MonopolyGame {
         int result1=0;
         int result2=0;
         Random random = new Random();
+        ImageIcon[] dice = new ImageIcon[10];
+        Image[] icon = new Image[10];
+        Image[] resizedicon = new Image[10];
+        Icon[] dIcon = new Icon[10];
 
+        
     public void setup(){
         frame = new JFrame("Monopoly");
         JButton StartButton = new JButton();
@@ -37,9 +42,7 @@ public class MonopolyGame {
             public void actionPerformed(ActionEvent e) {
                 startGame();
             }
-        
         });
-
 
         StartButton.setIcon(icon);
         frame.setLayout(null);
@@ -64,24 +67,6 @@ public class MonopolyGame {
         game.setup();
     }
     private void startGame(){
-        ImageIcon[] dice = new ImageIcon[10];
-        Image[] icon = new Image[10];
-        Image[] resizedicon = new Image[10];
-        Icon[] dIcon = new Icon[10];
-        
-        dice[1] = new ImageIcon("Monopoly/res/dice1.png");    
-        dice[2] = new ImageIcon("Monopoly/res/dice2.png");
-        dice[3] = new ImageIcon("Monopoly/res/dice3.png");
-        dice[4] = new ImageIcon("Monopoly/res/dice4.png");
-        dice[5] = new ImageIcon("Monopoly/res/dice5.png");
-        dice[6] = new ImageIcon("Monopoly/res/dice6.png");
-
-        for (int i=1;i<=6;i++) {
-            icon[i] = dice[i].getImage();
-            resizedicon[i] = icon[i].getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
-            dIcon[i] = new ImageIcon(resizedicon[i]);
-        }
-
         frame.getContentPane().removeAll();
         
         JPanel gameDisplay = new GameDisplay(fwidth, fheight);
@@ -94,24 +79,13 @@ public class MonopolyGame {
         label.setLayout(new BorderLayout(0, 0));
 
         Dice diceButton = new Dice();
-        diceButton.addActionListener(new ActionListener() {
-
-            public void actionPerformed(ActionEvent e) {
-                int result1 = random.nextInt(6) +1;
-                int result2 = random.nextInt(6) +1;
-                Dice.setResult(result1, result2);
-                label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
-            }
-        });
-        
+        RollDice rollDice = new RollDice(diceButton, label);
 
         JPanel dicePanel = new JPanel();
         dicePanel.setBounds(fwidth+80, fheight/2, 400, fheight/2);
         dicePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
         dicePanel.add(diceButton);
         dicePanel.add(label);
-
-
 
         frame.revalidate();
         frame.repaint();
