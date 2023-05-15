@@ -2,17 +2,10 @@ package Monopoly.RunGame;
 
 import java.awt.Font;
 import java.awt.Image;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 import java.util.Random;
-
-import javax.swing.BorderFactory;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.text.html.HTMLDocument.RunElement;
 
 public class Dice extends JButton {
 
@@ -28,12 +21,10 @@ public class Dice extends JButton {
         //this.addActionListener(this);
         this.setFocusable(false);
         this.setContentAreaFilled(false);
-        
         this.setFont(new Font("Comic Sans", Font.BOLD, 30));
 
         Image image = new ImageIcon("Monopoly/res/dice.png").getImage().getScaledInstance(250, 65, java.awt.Image.SCALE_SMOOTH);
         ImageIcon rollIcon = new ImageIcon(image);
-
         this.setIcon(rollIcon);
     }
 
@@ -45,8 +36,4 @@ public class Dice extends JButton {
     public int getResult() {
         return result1 + result2;
     }
-
-
-
-
 }
