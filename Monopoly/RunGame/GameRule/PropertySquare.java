@@ -19,7 +19,8 @@ public class PropertySquare extends MonopolySquare {
     YELLOW,
     GREEN,
     DARK_BLUE,
-    RAIL_ROAD
+    RAIL_ROAD,
+    UTILITY
   }
   
   private Color color;

@@ -5,7 +5,7 @@ public class IncomeTaxSquare extends MonopolySquare{
 
   @Override
   public void doAction(Player player) {
-    player.addBalance(INCOME_TAX_AMOUNT);
+    player.subtractBalance(INCOME_TAX_AMOUNT);
     System.out.println(player.getName() + " paid income tax of 200$");
   }
 }

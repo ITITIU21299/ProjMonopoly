@@ -3,6 +3,8 @@ package Monopoly.RunGame.GameRule;
 import java.util.ArrayList;
 import java.util.List;
 
+import Monopoly.RunGame.Dice;
+
 public class Player {
   private String name;
   private int balance;
@@ -155,5 +157,49 @@ public class Player {
       }
     }
     return railroadCount;
+  }
+
+  public boolean ownsMonopolyInColorGroup(PropertySquare.Color color) {
+    List<PropertySquare> propertiesInColorGroup = getPropertiesInColorGroup(color);
+    int ownedProperties = 0;
+    for (PropertySquare property : propertiesInColorGroup) {
+      if (property.getOwner() == this) {
+        ownedProperties++;
+      }
+    }
+    return ownedProperties == propertiesInColorGroup.size();
+  }
+
+  private List<PropertySquare> getPropertiesInColorGroup(PropertySquare.Color color) {
+    List<PropertySquare> propertiesInColorGroup = new ArrayList<>();
+    for (PropertySquare property : ownedProperties) {
+      if (property.getColor() == color) {
+        propertiesInColorGroup.add(property);
+      }
+    }
+    return propertiesInColorGroup;
+  }
+
+  public void buyRailroad(RailroadSquare railroad) {
+    if (railroad.getOwner() != null) {
+      System.out.println("Railroad is already owned by another player.");
+      return;
+    }
+
+    int price = railroad.getPrice();
+    if (getBalance() >= price) {
+      balance -= price;
+      railroad.setOwner(this);
+      ownedProperties.add(railroad);
+      System.out.println(name + " has bought " + railroad.getName());
+    } else {
+      System.out.println("Insuffiecient balance to buy " + railroad.getName());
+    }
+  }
+  
+  public int getRollDice() {
+    Dice dice = new Dice();
+
+    return dice.getResult();
   }
 }
