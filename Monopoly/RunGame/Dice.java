@@ -14,7 +14,7 @@ import javax.swing.JLabel;
 import javax.swing.border.EmptyBorder;
 import javax.swing.text.html.HTMLDocument.RunElement;
 
-public class Dice extends JButton implements ActionListener {
+public class Dice extends JButton {
 
     Random random = new Random();
     static int result1 = 0;
@@ -25,7 +25,7 @@ public class Dice extends JButton implements ActionListener {
     Icon[] dIcon = new Icon[10];
 
     public Dice() {
-        this.addActionListener(this);
+        //this.addActionListener(this);
         this.setFocusable(false);
         this.setContentAreaFilled(false);
         
