@@ -9,12 +9,14 @@ public class PropertySquare implements MonopolySquare {
   private int rent;
   private Player owner;
   private int x, y;
+  private String color;
 
-  public PropertySquare(int price, int rent, Player owner, String name) {
+  public PropertySquare(int price, int rent, Player owner, String name, String color) {
     this.name = name;
     this.price = price;
     this.rent = rent;
     this.owner = owner;
+    this.color = color;
   }
 
   public int getPrice() {
@@ -27,6 +29,14 @@ public class PropertySquare implements MonopolySquare {
 
   public Player getOwner() {
     return owner;
+  }
+
+  public String getColor() {
+    return color;
+  }
+
+  public void setColor(String color) {
+    this.color = color;
   }
 
   public void setOwner(Player player) {
