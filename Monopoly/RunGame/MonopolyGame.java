@@ -3,6 +3,7 @@ package Monopoly.RunGame;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
+import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -21,7 +22,10 @@ public class MonopolyGame {
         private JFrame frame;
         private int bankrupted;
         private final int fwidth=800, fheight=800;
-        
+        int result1=0;
+        int result2=0;
+        Random random = new Random();
+
     public void setup(){
         frame = new JFrame("Monopoly");
         JButton StartButton = new JButton();
@@ -77,9 +81,6 @@ public class MonopolyGame {
             resizedicon[i] = icon[i].getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
             dIcon[i] = new ImageIcon(resizedicon[i]);
         }
-        //Image image = new ImageIcon("Monopoly/res/rollingDice.gif").getImage().getScaledInstance(178, 125, java.awt.Image.SCALE_SMOOTH);
-        //ImageIcon rollingDice = new ImageIcon(image);
-        //ImageIcon rollingDice = new ImageIcon("Monopoly/res/rollingDice.gif");
 
         frame.getContentPane().removeAll();
         
@@ -90,8 +91,7 @@ public class MonopolyGame {
         notification.setBounds(800, 0, 600, 420);
 
         DiceLabel label = new DiceLabel();
-
-        Random random = new Random();
+        label.setLayout(new BorderLayout(0, 0));
 
         Dice diceButton = new Dice();
         diceButton.addActionListener(new ActionListener() {
@@ -107,9 +107,9 @@ public class MonopolyGame {
 
         JPanel dicePanel = new JPanel();
         dicePanel.setBounds(fwidth+80, fheight/2, 400, fheight/2);
-        dicePanel.setLayout(new BorderLayout(0, -150));
-        dicePanel.add(diceButton, BorderLayout.SOUTH);
-        dicePanel.add(label, BorderLayout.CENTER);
+        dicePanel.setLayout(new FlowLayout(FlowLayout.CENTER, 0, 20));
+        dicePanel.add(diceButton);
+        dicePanel.add(label);
 
 
 
