@@ -107,7 +107,7 @@ public class MonopolyGame {
 
         JPanel dicePanel = new JPanel();
         dicePanel.setBounds(fwidth+80, fheight/2, 400, fheight/2);
-        //dicePanel.setLayout(new BorderLayout(0, -150));
+        dicePanel.setLayout(new BorderLayout(0, -150));
         dicePanel.add(diceButton, BorderLayout.SOUTH);
         dicePanel.add(label, BorderLayout.CENTER);
 
