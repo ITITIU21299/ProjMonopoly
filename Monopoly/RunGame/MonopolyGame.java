@@ -91,9 +91,10 @@ public class MonopolyGame {
 
         DiceLabel label = new DiceLabel();
 
+        Random random = new Random();
+
         Dice diceButton = new Dice();
         diceButton.addActionListener(new ActionListener() {
-            Random random = new Random();
 
             public void actionPerformed(ActionEvent e) {
                 int result1 = random.nextInt(6) +1;
