@@ -31,7 +31,7 @@ public class Dice extends JButton implements ActionListener {
         
         this.setFont(new Font("Comic Sans", Font.BOLD, 30));
 
-        Image image = new ImageIcon("Monopoly/res/button.png").getImage().getScaledInstance(380, 75, java.awt.Image.SCALE_SMOOTH);
+        Image image = new ImageIcon("Monopoly/res/dice.png").getImage().getScaledInstance(380, 75, java.awt.Image.SCALE_SMOOTH);
         ImageIcon rollIcon = new ImageIcon(image);
 
         this.setIcon(rollIcon);
