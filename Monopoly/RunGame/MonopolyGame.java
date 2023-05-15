@@ -22,14 +22,6 @@ public class MonopolyGame {
         private JFrame frame;
         private int bankrupted;
         private final int fwidth=800, fheight=800;
-        int result1=0;
-        int result2=0;
-        Random random = new Random();
-        ImageIcon[] dice = new ImageIcon[10];
-        Image[] icon = new Image[10];
-        Image[] resizedicon = new Image[10];
-        Icon[] dIcon = new Icon[10];
-
         
     public void setup(){
         frame = new JFrame("Monopoly");

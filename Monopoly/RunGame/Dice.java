@@ -3,19 +3,12 @@ package Monopoly.RunGame;
 import java.awt.Font;
 import java.awt.Image;
 import java.util.Random;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
 
 public class Dice extends JButton {
-
-    Random random = new Random();
     static int result1 = 0;
     static int result2 =0;
-    ImageIcon[] dice = new ImageIcon[10];
-    Image[] icon = new Image[10];
-    Image[] resizedicon = new Image[10];
-    Icon[] dIcon = new Icon[10];
 
     public Dice() {
         //this.addActionListener(this);
