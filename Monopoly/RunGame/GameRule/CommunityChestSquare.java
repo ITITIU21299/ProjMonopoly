@@ -7,7 +7,7 @@ public class CommunityChestSquare extends MonopolySquare{
     this.communityChestCardDeck = communityChestCardDeck;
   }
   @Override
-  public void doAction(Player player) {
+  public String doAction(Player player) {
     Card drawnCard = communityChestCardDeck.drawCommunityChestCard();
     player.useCommnutityChestCard(drawnCard);
   }

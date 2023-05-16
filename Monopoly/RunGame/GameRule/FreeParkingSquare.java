@@ -6,7 +6,7 @@ public class FreeParkingSquare extends MonopolySquare {
   }
 
   @Override
-  public void doAction(Player player) {
+  public String doAction(Player player) {
     System.out.println(player.getName() + " landed on Free Parking.");
   }
 }

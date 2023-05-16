@@ -7,7 +7,7 @@ public class ChanceSquare extends MonopolySquare{
     this.chanceCardDeck = chanceCardDeck;
   }
   @Override
-  public void doAction(Player player) {
+  public String doAction(Player player) {
     Card drawnCard = chanceCardDeck.drawChanceCard();
     player.useChanceCard(drawnCard);
   }

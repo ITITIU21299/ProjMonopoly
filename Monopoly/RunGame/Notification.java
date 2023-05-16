@@ -22,14 +22,12 @@ public class Notification extends JPanel{
         repaint();
     }
     public void RemoveNotification(){
-        //remove(notificationLabel);
         Component[] components = getComponents();
         for (Component component : components) {
             if (component instanceof JLabel) {
                 remove(component);
             }
-    }
-        
+    }  
         revalidate();
         repaint();
     }

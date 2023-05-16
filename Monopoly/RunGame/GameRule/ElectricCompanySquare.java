@@ -32,4 +32,5 @@ public class ElectricCompanySquare extends PropertySquare {
       System.out.println(player.getName() + " has paid " + rent + " as rent for landing on Electric Company.");
     }
   }
+  
 }

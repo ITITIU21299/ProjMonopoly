@@ -7,6 +7,8 @@ import java.util.Random;
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
 
+//import Monopoly.RunGame.GameRule.Dice;
+
 public class RollDice implements ActionListener {
 
     Dice dice = new Dice();

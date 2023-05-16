@@ -6,7 +6,7 @@ public class JailSquare extends MonopolySquare {
   }
 
   @Override
-  public void doAction(Player player) {
+  public String doAction(Player player) {
     if (player.isInJail()) {
       System.out.println(player.getName() + " is just visiting the jail.");
     }

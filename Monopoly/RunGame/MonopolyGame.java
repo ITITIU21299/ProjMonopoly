@@ -1,12 +1,17 @@
 package Monopoly.RunGame;
 
+import Monopoly.RunGame.GameRule.MonopolySquare;
+//import Monopoly.RunGame.GameRule.Dice;
 import Monopoly.RunGame.GameRule.Player;
+import Monopoly.RunGame.GameRule.Board;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.Graphics;
 import java.awt.Image;
+import java.util.ArrayList;
+import java.util.List;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
@@ -45,6 +50,12 @@ public class MonopolyGame{
         new Player("Player 2",1000,0,"Monopoly/res/token_dog.png"),
         new Player("Player 3",1000,0,"Monopoly/res/token_hat.png"),
         new Player("Player 4",1000,0,"Monopoly/res/token_ship.png")};
+
+        GameDisplay gameDisplay = new GameDisplay(fwidth, fheight);
+
+        Board board = new Board();
+
+        //private List<MonopolySquare> squares;
         
     public void setup(){
         frame = new JFrame("Monopoly");
@@ -91,9 +102,12 @@ public class MonopolyGame{
 
         frame.getContentPane().removeAll();
         
-        JPanel gameDisplay = new GameDisplay(fwidth, fheight);
-        gameDisplay.setBounds(0, 0, fwidth, fheight);
         
+        gameDisplay.setBounds(0, 0, fwidth, fheight);
+        gameDisplay.setTokenPosition(0,0);
+        gameDisplay.setTokenPosition(1,0);
+        gameDisplay.setTokenPosition(2,0);
+        gameDisplay.setTokenPosition(3,0);
         
         notification.setBounds(800, 0, 600, 420);
 
@@ -117,14 +131,14 @@ public class MonopolyGame{
 
         
 
-        JPanel drawP1 = new DrawPlayer(players[0],0);
+        //JPanel drawP1 = new DrawPlayer(players[0],0);
 
         //while (!gameEnd){
             
 
 
 
-            isPlayerTurn = true;
+        //    isPlayerTurn = true;
             diceButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (!gameEnd){
@@ -134,8 +148,8 @@ public class MonopolyGame{
                }
             });
 
-            if (bankrupted==3){
-            gameEnd=true;}
+        //    if (bankrupted==3){
+        //    gameEnd=true;}
         //}
         
 
@@ -158,8 +172,8 @@ public class MonopolyGame{
         //startNewGame();
     }
     public void PlayTurn(Player CPlayer){
-        int result1 = random.nextInt(6) +1;
-        int result2 = random.nextInt(6) +1;
+        int result1 =2 ;//random.nextInt(6) +1;
+        int result2 = 2;//random.nextInt(6) +1;
         Dice.setResult(result1, result2);
         label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
         int result=result1+result2;
@@ -171,11 +185,20 @@ public class MonopolyGame{
         notification.addNotification("                               "+CPlayer.getName()+" move "+ result + " steps                                      ");
         count++;
         //notification.RemoveNotification();
-
+        //CPlayer.setPosition(CPlayer.getPosition()+result);
         
+        //int currentPosition = CPlayer.getPosition();
+        board.movePlayer(CPlayer, result);
+        System.out.println(CPlayer.getPosition());
+        notification.addNotification(board.movePlayer(CPlayer, result));
+        gameDisplay.setTokenPosition(CurrentPlayerIndex, CPlayer.getPosition());
+        
+
+
         if (bankrupted==3){
             gameEnd=true;
         }
+
         CurrentPlayerIndex++;
         if (CurrentPlayerIndex==4)
             CurrentPlayerIndex=0;

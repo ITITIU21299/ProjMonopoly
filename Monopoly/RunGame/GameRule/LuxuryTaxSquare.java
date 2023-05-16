@@ -8,7 +8,7 @@ public class LuxuryTaxSquare extends MonopolySquare {
   }
 
   @Override
-  public void doAction(Player player) {
+  public String doAction(Player player) {
     player.subtractBalance(LUXURY_TAX_AMOUNT);
     System.out.println(player.getName() + " paid luxury tax of 75$");
   }
