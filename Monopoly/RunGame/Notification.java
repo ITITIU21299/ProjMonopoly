@@ -1,6 +1,7 @@
 package Monopoly.RunGame;
 
 import java.awt.Component;
+import java.awt.Font;
 
 import javax.swing.JLabel;
 import javax.swing.JPanel;
@@ -12,8 +13,9 @@ public class Notification extends JPanel{
         
         notificationLabel = new JLabel(text);
         notificationLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        notificationLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        
+        notificationLabel.setHorizontalAlignment(SwingConstants.LEFT);
+        Font labelFont = new Font("Arial", Font.BOLD, 20);
+        notificationLabel.setFont(labelFont);
         add(notificationLabel);
 
         revalidate();

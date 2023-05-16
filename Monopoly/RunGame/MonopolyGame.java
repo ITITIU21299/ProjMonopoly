@@ -163,12 +163,12 @@ public class MonopolyGame{
         Dice.setResult(result1, result2);
         label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
         int result=result1+result2;
-        if (count==10){
+        if (count==12){
             notification.RemoveNotification();
             count=0;
         }
 
-        notification.addNotification("                                " + CPlayer.getName()+" move "+ result + " steps                                  ");
+        notification.addNotification("                               "+CPlayer.getName()+" move "+ result + " steps                                      ");
         count++;
         //notification.RemoveNotification();
 
