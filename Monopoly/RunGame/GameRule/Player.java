@@ -3,24 +3,28 @@ package Monopoly.RunGame.GameRule;
 import java.util.ArrayList;
 import java.util.List;
 
-import Monopoly.RunGame.Dice;
-
 public class Player {
   private String name;
   private int balance;
   private int position;
+  private String token;
   private List<PropertySquare> ownedProperties;
   private List<Card> chanceCards;
   private List<Card> communityChestCards;
   private ArrayList<Card> getOutOfJailCards;
 
-  public Player(String name, int balance, int position) {
+  public Player(String name, int balance, int position, String token) {
     this.name = name;
     this.balance = balance;
     this.position = position;
+    this.token = token;
     ownedProperties = new ArrayList<>();
     chanceCards = new ArrayList<>();
     communityChestCards = new ArrayList<>();
+  }
+
+  public String getToken(){
+    return token;
   }
 
   public String getName() {
@@ -157,49 +161,5 @@ public class Player {
       }
     }
     return railroadCount;
-  }
-
-  public boolean ownsMonopolyInColorGroup(PropertySquare.Color color) {
-    List<PropertySquare> propertiesInColorGroup = getPropertiesInColorGroup(color);
-    int ownedProperties = 0;
-    for (PropertySquare property : propertiesInColorGroup) {
-      if (property.getOwner() == this) {
-        ownedProperties++;
-      }
-    }
-    return ownedProperties == propertiesInColorGroup.size();
-  }
-
-  private List<PropertySquare> getPropertiesInColorGroup(PropertySquare.Color color) {
-    List<PropertySquare> propertiesInColorGroup = new ArrayList<>();
-    for (PropertySquare property : ownedProperties) {
-      if (property.getColor() == color) {
-        propertiesInColorGroup.add(property);
-      }
-    }
-    return propertiesInColorGroup;
-  }
-
-  public void buyRailroad(RailroadSquare railroad) {
-    if (railroad.getOwner() != null) {
-      System.out.println("Railroad is already owned by another player.");
-      return;
-    }
-
-    int price = railroad.getPrice();
-    if (getBalance() >= price) {
-      balance -= price;
-      railroad.setOwner(this);
-      ownedProperties.add(railroad);
-      System.out.println(name + " has bought " + railroad.getName());
-    } else {
-      System.out.println("Insuffiecient balance to buy " + railroad.getName());
-    }
-  }
-  
-  public int getRollDice() {
-    Dice dice = new Dice();
-
-    return dice.getResult();
   }
 }
