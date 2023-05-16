@@ -1,12 +1,8 @@
 package Monopoly.RunGame.GameRule;
 
 public class GoToJailSquare extends MonopolySquare {
-  private int goToJailPosition;
-  private String name;
-
-  public GoToJailSquare(String name, int goToJailPosition) {
-    this.name = name;
-    this.goToJailPosition = goToJailPosition;
+  public GoToJailSquare() {
+    
   }
   
   @Override

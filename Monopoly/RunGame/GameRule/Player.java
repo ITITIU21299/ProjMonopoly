@@ -3,6 +3,8 @@ package Monopoly.RunGame.GameRule;
 import java.util.ArrayList;
 import java.util.List;
 
+import Monopoly.RunGame.Dice;
+
 public class Player {
   private String name;
   private int balance;
@@ -164,8 +166,6 @@ public class Player {
     }
     return railroadCount;
   }
-<<<<<<< HEAD
-=======
 
   public boolean ownsMonopolyInColorGroup(PropertySquare.Color color) {
     List<PropertySquare> propertiesInColorGroup = getPropertiesInColorGroup(color);
@@ -218,5 +218,4 @@ public class Player {
   public void setInJail(boolean inJail) {
     this.inJail = inJail;
   }
->>>>>>> 76e6f718bdb99301d447ff2b539d0523003517f8
 }
