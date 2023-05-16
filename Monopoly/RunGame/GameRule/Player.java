@@ -13,6 +13,7 @@ public class Player {
   private List<Card> chanceCards;
   private List<Card> communityChestCards;
   private ArrayList<Card> getOutOfJailCards;
+  private boolean inJail;
 
   public Player(String name, int balance, int position) {
     this.name = name;
@@ -21,6 +22,7 @@ public class Player {
     ownedProperties = new ArrayList<>();
     chanceCards = new ArrayList<>();
     communityChestCards = new ArrayList<>();
+    inJail = false;
   }
 
   public String getName() {
@@ -201,5 +203,13 @@ public class Player {
     Dice dice = new Dice();
 
     return dice.getResult();
+  }
+
+  public boolean isInJail() {
+    return inJail;
+  }
+  
+  public void setInJail(boolean inJail) {
+    this.inJail = inJail;
   }
 }
