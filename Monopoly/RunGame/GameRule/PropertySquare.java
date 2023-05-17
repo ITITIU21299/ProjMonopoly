@@ -9,6 +9,7 @@ public class PropertySquare extends MonopolySquare {
   private int rent;
   private Player owner;
   private int x, y;
+  private String text;
 
   public enum Color {
     BROWN,
@@ -72,5 +73,8 @@ public class PropertySquare extends MonopolySquare {
 
   public String getName() {
     return this.name;
+  }
+  public String getNotification(){
+    return text;
   }
 }
