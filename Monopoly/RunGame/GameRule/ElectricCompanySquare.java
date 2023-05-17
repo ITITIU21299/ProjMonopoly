@@ -1,6 +1,7 @@
 package Monopoly.RunGame.GameRule;
 
 public class ElectricCompanySquare extends PropertySquare {
+  private String text;
   public ElectricCompanySquare(String name, int price) {
     super(name, price, Color.UTILITY);
   }
@@ -22,14 +23,14 @@ public class ElectricCompanySquare extends PropertySquare {
         player.purchaseProperty(this);
       }
       else {
-      System.out.println("Not enough balance to buy Electric Company");
+      text = "Not enough balance to buy Electric Company";
       }
     }
     else if (getOwner() != player) {
       int diceRoll = player.getRollDice();
       int rent = calculateRent(diceRoll);
       player.payRentTo(getOwner(), rent);
-      System.out.println(player.getName() + " has paid " + rent + " as rent for landing on Electric Company.");
+      text = player.getName() + " has paid " + rent + " as rent for landing on Electric Company.";
     }
   }
   

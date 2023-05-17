@@ -163,10 +163,16 @@ public class MonopolyGame {
 
         // startNewGame();
     }
+<<<<<<< HEAD
+    public void PlayTurn(Player CPlayer){
+        int result1 =2 ;//random.nextInt(6) +1;
+        int result2 = 3;//random.nextInt(6) +1;
+=======
 
     public void PlayTurn(Player CPlayer) {
         int result1 = 2;// random.nextInt(6) + 1;
         int result2 = 3;// random.nextInt(6) + 1;
+>>>>>>> 90d2531e941bc6b0371a43aa431e20dfc20630e0
         Dice.setResult(result1, result2);
         label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
         int result = result1 + result2;

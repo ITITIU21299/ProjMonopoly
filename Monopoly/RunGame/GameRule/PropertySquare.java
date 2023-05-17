@@ -74,7 +74,9 @@ public class PropertySquare extends MonopolySquare {
   public String getName() {
     return this.name;
   }
-  public String getNotification(){
+
+  @Override
+  public String getNotification() {
     return text;
   }
 }
