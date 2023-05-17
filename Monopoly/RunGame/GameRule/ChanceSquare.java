@@ -11,6 +11,7 @@ public class ChanceSquare extends MonopolySquare{
     Card drawnCard = chanceCardDeck.drawChanceCard();
     player.useChanceCard(drawnCard);
   }
+  
   public String getNotification(){
     return text;
   }
