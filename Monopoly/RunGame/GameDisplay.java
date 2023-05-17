@@ -54,6 +54,7 @@ public class GameDisplay extends JPanel {
         tokenY[2] = 725;
         tokenX[3] = 725;
         tokenY[3] = 725;
+        // Bottom
         if (coor == 0) {
             tokenX[playerIndex] = 725;
             tokenY[playerIndex] = 725;
@@ -100,11 +101,129 @@ public class GameDisplay extends JPanel {
         }
         /*
          * if (coor>=1 || coor <=9){
-         * tokenX[playerIndex] = 725-coor*70;
+         * tokenX[playerIndex] = 725-coor*65;
          * tokenY[playerIndex] = 725;
          * }
          */
-
+        // Left
+        if (coor == 11) {
+            tokenX[playerIndex] = 20;
+            tokenY[playerIndex] = 635;
+        }
+        if (coor == 12) {
+            tokenX[playerIndex] = 20;
+            tokenY[playerIndex] = 570;
+        }
+        if (coor == 13) {
+            tokenX[playerIndex] = 20;
+            tokenY[playerIndex] = 505;
+        }
+        if (coor == 14) {
+            tokenX[playerIndex] = 20;
+            tokenY[playerIndex] = 440;
+        }
+        if (coor == 15) {
+            tokenX[playerIndex] = 20;
+            tokenY[playerIndex] = 375;
+        }
+        if (coor == 16) {
+            tokenX[playerIndex] = 20;
+            tokenY[playerIndex] = 310;
+        }
+        if (coor == 17) {
+            tokenX[playerIndex] = 20;
+            tokenY[playerIndex] = 245;
+        }
+        if (coor == 18) {
+            tokenX[playerIndex] = 20;
+            tokenY[playerIndex] = 180;
+        }
+        if (coor == 19) {
+            tokenX[playerIndex] = 20;
+            tokenY[playerIndex] = 115;
+        }
+        if (coor == 20) {
+            tokenX[playerIndex] = 30;
+            tokenY[playerIndex] = 30;
+        }
+        // Top
+        if (coor == 21) {
+            tokenX[playerIndex] = 115;
+            tokenY[playerIndex] = 35;
+        }
+        if (coor == 22) {
+            tokenX[playerIndex] = 180;
+            tokenY[playerIndex] = 35;
+        }
+        if (coor == 23) {
+            tokenX[playerIndex] = 245;
+            tokenY[playerIndex] = 35;
+        }
+        if (coor == 24) {
+            tokenX[playerIndex] = 310;
+            tokenY[playerIndex] = 35;
+        }
+        if (coor == 25) {
+            tokenX[playerIndex] = 375;
+            tokenY[playerIndex] = 35;
+        }
+        if (coor == 26) {
+            tokenX[playerIndex] = 440;
+            tokenY[playerIndex] = 35;
+        }
+        if (coor == 27) {
+            tokenX[playerIndex] = 505;
+            tokenY[playerIndex] = 35;
+        }
+        if (coor == 28) {
+            tokenX[playerIndex] = 570;
+            tokenY[playerIndex] = 35;
+        }
+        if (coor == 29) {
+            tokenX[playerIndex] = 635;
+            tokenY[playerIndex] = 35;
+        }
+        if (coor == 30) {
+            tokenX[playerIndex] = 725;
+            tokenY[playerIndex] = 30;
+        }
+        // Right
+        if (coor == 31) {
+            tokenX[playerIndex] = 730;
+            tokenY[playerIndex] = 115;
+        }
+        if (coor == 32) {
+            tokenX[playerIndex] = 730;
+            tokenY[playerIndex] = 180;
+        }
+        if (coor == 33) {
+            tokenX[playerIndex] = 730;
+            tokenY[playerIndex] = 245;
+        }
+        if (coor == 34) {
+            tokenX[playerIndex] = 730;
+            tokenY[playerIndex] = 310;
+        }
+        if (coor == 35) {
+            tokenX[playerIndex] = 730;
+            tokenY[playerIndex] = 375;
+        }
+        if (coor == 36) {
+            tokenX[playerIndex] = 730;
+            tokenY[playerIndex] = 440;
+        }
+        if (coor == 37) {
+            tokenX[playerIndex] = 730;
+            tokenY[playerIndex] = 505;
+        }
+        if (coor == 38) {
+            tokenX[playerIndex] = 730;
+            tokenY[playerIndex] = 570;
+        }
+        if (coor == 39) {
+            tokenX[playerIndex] = 730;
+            tokenY[playerIndex] = 635;
+        }
         repaint();
     }
 
