@@ -1,8 +1,8 @@
 package Monopoly.RunGame.GameRule;
 
+import Monopoly.RunGame.Dice;
 import java.util.ArrayList;
 import java.util.List;
-
 
 public class Player {
   private String name;
@@ -209,14 +209,14 @@ public class Player {
     return diceResult;
   }
 
+  public void setRollDice(int diceResult){
+    this.diceResult=diceResult;
+  }
+
   public boolean isInJail() {
     return inJail;
   }
   
-  public void setDiceResult(int diceResult) {
-    this.diceResult = diceResult;
-  }
-
   public void setInJail(boolean inJail) {
     this.inJail = inJail;
   }
