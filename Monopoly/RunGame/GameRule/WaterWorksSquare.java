@@ -4,6 +4,7 @@ import Monopoly.RunGame.Dice;
 import Monopoly.RunGame.GameRule.PropertySquare.Color;
 
 public class WaterWorksSquare extends PropertySquare {
+  private String text;
   public WaterWorksSquare(String name, int price) {
     super(name, price, Color.UTILITY);
   }
@@ -25,7 +26,7 @@ public class WaterWorksSquare extends PropertySquare {
         player.purchaseProperty(this);
       }
       else {
-      System.out.println("Not enough balance to buy Water Works");
+      text = "Not enough balance to buy Water Works";
       }
     }
     else if (getOwner() != player) {
@@ -33,7 +34,15 @@ public class WaterWorksSquare extends PropertySquare {
       int diceRoll = player.getRollDice();
       int rent = calculateRent(diceRoll);
       player.payRentTo(getOwner(), rent);
-      System.out.println(player.getName() + " has paid " + rent + " as rent for landing on Water Works.");
+      text = player.getName() + " has paid " + rent + " as rent for landing on Water Works.";
     }
+    else {
+      text = player.getName() + " landed on " + "Water Works".
+    }
+  }
+  
+  @Override
+  public String getNotification() {
+    return text;
   }
 }
