@@ -2,10 +2,11 @@ package Monopoly.RunGame.GameRule;
 
 import java.lang.reflect.Constructor;
 
-public class RailroadSquare extends PropertySquare{
+public class RailroadSquare extends PropertySquare {
   private static final int BASE_RENT = 25;
   private String text;
   private String name;
+  private int rent;
 
   public RailroadSquare(String name) {
     super(name, 200, Color.RAIL_ROAD);

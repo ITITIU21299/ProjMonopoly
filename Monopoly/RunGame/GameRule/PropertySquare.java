@@ -2,6 +2,8 @@ package Monopoly.RunGame.GameRule;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class PropertySquare extends MonopolySquare {
   private Board Board;
   private String name;
@@ -30,6 +32,7 @@ public class PropertySquare extends MonopolySquare {
     this.name = name;
     this.price = price;
     this.color = color;
+    this.owner = null;
   }
 
   public int getPrice() {
@@ -56,18 +59,24 @@ public class PropertySquare extends MonopolySquare {
     owner = player;
   }
   
+  @Override
   public void doAction(Player player) {
-    if (owner == null) {
-      if (player.getBalance() >= price) {
-        player.purchaseProperty(this);
-        setOwner(player);
-      }
-      else {
-        System.out.println("Don't have enough balance to buy");
+    if (getOwner() == null) {
+      int choice = JOptionPane.showConfirmDialog(null, "Do you want to buy " + getName() + "?", "Buy Property",JOptionPane.YES_NO_OPTION);
+      if (choice == JOptionPane.YES_OPTION) {
+        if (player.getBalance() >= getPrice()) {
+          player.purchaseProperty(this);
+        } else {
+          JOptionPane.showMessageDialog(null, "Not enough balance to buy " + getName(), "Insufficient Balance",
+          JOptionPane.WARNING_MESSAGE);
+          text = "Not enough balance to buy " + getName();
+        }
       }
     }
-    else if (owner == player) {
-      //Player already owns the property, nothing happen
+    else if (owner != player) {
+      int rent = getPrice()/10;
+      player.payRentTo(getOwner(), rent);
+      JOptionPane.showMessageDialog(null, player.getName() + " has paid $" + rent + " as rent to " + getOwner().getName(),"Rent Payment", JOptionPane.INFORMATION_MESSAGE);
     }
   }
 

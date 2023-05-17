@@ -1,7 +1,10 @@
 package Monopoly.RunGame.GameRule;
 
+import java.lang.annotation.Retention;
+
 public class ElectricCompanySquare extends PropertySquare {
   private String text;
+
   public ElectricCompanySquare(String name, int price) {
     super(name, price, Color.UTILITY);
   }

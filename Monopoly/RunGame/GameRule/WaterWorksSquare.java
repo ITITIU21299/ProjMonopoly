@@ -5,6 +5,7 @@ import Monopoly.RunGame.GameRule.PropertySquare.Color;
 
 public class WaterWorksSquare extends PropertySquare {
   private String text;
+  private int rent;
   public WaterWorksSquare(String name, int price) {
     super(name, price, Color.UTILITY);
   }
