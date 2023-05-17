@@ -231,7 +231,6 @@ public class GameDisplay extends JPanel {
     public void paintComponent(Graphics g) {
         super.paintComponent(g);
         g.drawImage(image, 0, 0, this);
-        // g.fillPolygon(tokenY, tokenX, 3);
         for (int i = 0; i < 4; i++) {
             g.drawImage(tokenImage[i], tokenX[i], tokenY[i], this);
         }

@@ -2,6 +2,8 @@ package Monopoly.RunGame.GameRule;
 
 import java.util.List;
 
+import javax.swing.JOptionPane;
+
 public class PropertySquare extends MonopolySquare {
   private Board Board;
   private String name;
@@ -59,12 +61,26 @@ public class PropertySquare extends MonopolySquare {
   public void doAction(Player player) {
     if (owner == null) {
       if (player.getBalance() >= price) {
-        player.purchaseProperty(this);
+        int choice = JOptionPane.showOptionDialog(
+                    null,
+                    "Do you want to buy this property for $" + price + "?",
+                    "Purchase Property",
+                    JOptionPane.YES_NO_OPTION,
+                    JOptionPane.QUESTION_MESSAGE,
+                    null,
+                    new Object[]{"Buy", "Don't Buy"},
+                    "Buy");
+
+            if (choice == JOptionPane.YES_OPTION) {
+                player.purchaseProperty(this);
+                setOwner(player);
+            }}
+        /*player.purchaseProperty(this);
         setOwner(player);
       }
       else {
         System.out.println("Don't have enough balance to buy");
-      }
+      }*/
     }
     else if (owner == player) {
       //Player already owns the property, nothing happen

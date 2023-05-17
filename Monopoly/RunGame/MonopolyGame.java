@@ -11,6 +11,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -148,7 +150,7 @@ public class MonopolyGame{
         int result=result1+result2;
         
 
-        if (count==12){
+        if (count==9){
             notification.RemoveNotification();
             count=0;
         }
@@ -157,13 +159,14 @@ public class MonopolyGame{
         count++;
         //notification.RemoveNotification();
         //CPlayer.setPosition(CPlayer.getPosition()+result);
-        
-        //int currentPosition = CPlayer.getPosition();
+        int currentPosition = CPlayer.getPosition();
+        gameDisplay.setTokenPosition(CurrentPlayerIndex,currentPosition);
         board.movePlayer(CPlayer, result);
+
         CPlayer.setRollDice(result);
         //System.out.println(CPlayer.getPosition());
         notification.addNotification(board.Notify());
-        gameDisplay.setTokenPosition(CurrentPlayerIndex, CPlayer.getPosition());
+        
         
 
 
