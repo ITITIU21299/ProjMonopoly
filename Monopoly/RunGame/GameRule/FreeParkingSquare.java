@@ -8,7 +8,7 @@ public class FreeParkingSquare extends MonopolySquare {
 
   @Override
   public void doAction(Player player) {
-    System.out.println(player.getName() + " landed on Free Parking.");
+    text = player.getName() + " landed on Free Parking.";
   }
   public String getNotification(){
     return text;
