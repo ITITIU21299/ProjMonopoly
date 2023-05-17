@@ -1,7 +1,10 @@
 package Monopoly.RunGame.GameRule;
 
+import java.lang.annotation.Retention;
+
 public class ElectricCompanySquare extends PropertySquare {
   private String text;
+
   public ElectricCompanySquare(String name, int price) {
     super(name, price, Color.UTILITY);
   }
@@ -21,12 +24,10 @@ public class ElectricCompanySquare extends PropertySquare {
     if (getOwner() == null) {
       if (player.getBalance() >= getPrice()) {
         player.purchaseProperty(this);
+      } else {
+        text = "Not enough balance to buy Electric Company";
       }
-      else {
-      text = "Not enough balance to buy Electric Company";
-      }
-    }
-    else if (getOwner() != player) {
+    } else if (getOwner() != player) {
       int diceRoll = player.getRollDice();
       int rent = calculateRent(diceRoll);
       player.payRentTo(getOwner(), rent);
@@ -34,4 +35,8 @@ public class ElectricCompanySquare extends PropertySquare {
     }
   }
   
+  @Override
+  public String getNotification() {
+    return text;
+  }
 }

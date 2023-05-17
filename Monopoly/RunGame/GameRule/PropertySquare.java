@@ -32,6 +32,7 @@ public class PropertySquare extends MonopolySquare {
     this.name = name;
     this.price = price;
     this.color = color;
+    this.owner = null;
   }
 
   public int getPrice() {
@@ -58,32 +59,24 @@ public class PropertySquare extends MonopolySquare {
     owner = player;
   }
   
+  @Override
   public void doAction(Player player) {
-    if (owner == null) {
-      if (player.getBalance() >= price) {
-        int choice = JOptionPane.showOptionDialog(
-                    null,
-                    "Do you want to buy this property for $" + price + "?",
-                    "Purchase Property",
-                    JOptionPane.YES_NO_OPTION,
-                    JOptionPane.QUESTION_MESSAGE,
-                    null,
-                    new Object[]{"Buy", "Don't Buy"},
-                    "Buy");
-
-            if (choice == JOptionPane.YES_OPTION) {
-                player.purchaseProperty(this);
-                setOwner(player);
-            }}
-        /*player.purchaseProperty(this);
-        setOwner(player);
+    if (getOwner() == null) {
+      int choice = JOptionPane.showConfirmDialog(null, "Do you want to buy " + getName() + "?", "Buy Property",JOptionPane.YES_NO_OPTION);
+      if (choice == JOptionPane.YES_OPTION) {
+        if (player.getBalance() >= getPrice()) {
+          player.purchaseProperty(this);
+        } else {
+          JOptionPane.showMessageDialog(null, "Not enough balance to buy " + getName(), "Insufficient Balance",
+          JOptionPane.WARNING_MESSAGE);
+          text = "Not enough balance to buy " + getName();
+        }
       }
-      else {
-        System.out.println("Don't have enough balance to buy");
-      }*/
     }
-    else if (owner == player) {
-      //Player already owns the property, nothing happen
+    else if (owner != player) {
+      int rent = getPrice()/10;
+      player.payRentTo(getOwner(), rent);
+      JOptionPane.showMessageDialog(null, player.getName() + " has paid $" + rent + " as rent to " + getOwner().getName(),"Rent Payment", JOptionPane.INFORMATION_MESSAGE);
     }
   }
 
