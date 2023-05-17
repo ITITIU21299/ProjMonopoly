@@ -14,6 +14,7 @@ public class Player {
   private List<Card> communityChestCards;
   private ArrayList<Card> getOutOfJailCards;
   private boolean inJail;
+  private int diceResult;
 
   public Player(String name, int balance, int position, String token) {
     this.name = name;
@@ -204,14 +205,18 @@ public class Player {
     }
   }
   
-  public int getRollDice(Dice dice) {
-    return dice.getResult();
+  public int getRollDice() {
+    return diceResult;
   }
 
   public boolean isInJail() {
     return inJail;
   }
   
+  public void setDiceResult(int diceResult) {
+    this.diceResult = diceResult;
+  }
+
   public void setInJail(boolean inJail) {
     this.inJail = inJail;
   }
