@@ -15,6 +15,7 @@ public abstract class MonopolySquare {
 
   // public abstract void landOn(Player player);
 
-  public abstract String doAction(Player player);
+  public abstract void doAction(Player player);
   
+  public abstract String getNotification();
 }

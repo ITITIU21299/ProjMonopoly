@@ -189,8 +189,8 @@ public class MonopolyGame{
         
         //int currentPosition = CPlayer.getPosition();
         board.movePlayer(CPlayer, result);
-        System.out.println(CPlayer.getPosition());
-        notification.addNotification(board.movePlayer(CPlayer, result));
+        //System.out.println(CPlayer.getPosition());
+        notification.addNotification(board.Notify());
         gameDisplay.setTokenPosition(CurrentPlayerIndex, CPlayer.getPosition());
         
 

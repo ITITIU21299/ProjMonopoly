@@ -64,7 +64,7 @@ public class Board {
     squares.add(new PropertySquare("BOARDWALK", 400, Color.DARK_BLUE));
   }
 
-  public String movePlayer(Player player, int steps) {
+  public void movePlayer(Player player, int steps) {
     int currentPosition = player.getPosition();
     int boardSize = squares.size();
 
@@ -76,6 +76,10 @@ public class Board {
 
     player.setPosition(newPostion);
     MonopolySquare currentSquare = squares.get(newPostion);
-    return currentSquare.doAction(player);
+    currentSquare.doAction(player);
+  }
+  public String Notify(){
+    MonopolySquare currentSquare = squares.get(newPostion);
+    return currentSquare.getNotification();
   }
 }

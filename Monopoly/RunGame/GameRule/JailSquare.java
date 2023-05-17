@@ -1,12 +1,13 @@
 package Monopoly.RunGame.GameRule;
 
 public class JailSquare extends MonopolySquare {
+  private String text;
   public JailSquare() {
     
   }
 
   @Override
-  public String doAction(Player player) {
+  public void doAction(Player player) {
     if (player.isInJail()) {
       System.out.println(player.getName() + " is just visiting the jail.");
     }
@@ -15,5 +16,8 @@ public class JailSquare extends MonopolySquare {
       player.setPosition(Board.JAIL_POSITION);
       System.out.println(player.getName() + " is sent to jail.");
     }
+  }
+  public String getNotification(){
+    return text;
   }
 }
