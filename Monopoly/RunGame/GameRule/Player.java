@@ -3,7 +3,6 @@ package Monopoly.RunGame.GameRule;
 import java.util.ArrayList;
 import java.util.List;
 
-import Monopoly.RunGame.Dice;
 
 public class Player {
   private String name;
@@ -205,9 +204,7 @@ public class Player {
     }
   }
   
-  public int getRollDice() {
-    Dice dice = new Dice();
-
+  public int getRollDice(Dice dice) {
     return dice.getResult();
   }
 

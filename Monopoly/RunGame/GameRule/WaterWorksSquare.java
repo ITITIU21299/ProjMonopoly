@@ -1,5 +1,6 @@
 package Monopoly.RunGame.GameRule;
 
+import Monopoly.RunGame.Dice;
 import Monopoly.RunGame.GameRule.PropertySquare.Color;
 
 public class WaterWorksSquare extends PropertySquare {
@@ -28,6 +29,7 @@ public class WaterWorksSquare extends PropertySquare {
       }
     }
     else if (getOwner() != player) {
+      Dice dice = new Dice();
       int diceRoll = player.getRollDice();
       int rent = calculateRent(diceRoll);
       player.payRentTo(getOwner(), rent);
