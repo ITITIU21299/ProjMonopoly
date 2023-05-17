@@ -46,14 +46,14 @@ public class GameDisplay extends JPanel {
     }
 
     public void setTokenPosition(int playerIndex, int coor) {
-        tokenX[0] = 725;
-        tokenY[0] = 725;
-        tokenX[1] = 725;
-        tokenY[1] = 725;
-        tokenX[2] = 725;
-        tokenY[2] = 725;
-        tokenX[3] = 725;
-        tokenY[3] = 725;
+        //tokenX[0] = 725;
+        //tokenY[0] = 725;
+        //tokenX[1] = 725;
+        //tokenY[1] = 725;
+        //tokenX[2] = 725;
+        //tokenY[2] = 725;
+        //tokenX[3] = 725;
+        //tokenY[3] = 725;
         // Bottom
         if (coor == 0) {
             tokenX[playerIndex] = 725;

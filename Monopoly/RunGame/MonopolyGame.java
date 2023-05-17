@@ -141,8 +141,8 @@ public class MonopolyGame{
         //startNewGame();
     }
     public void PlayTurn(Player CPlayer){
-        int result1 =2 ;//random.nextInt(6) +1;
-        int result2 = 2;//random.nextInt(6) +1;
+        int result1 =random.nextInt(6) +1;
+        int result2 =random.nextInt(6) +1;
         Dice.setResult(result1, result2);
         label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
         int result=result1+result2;
