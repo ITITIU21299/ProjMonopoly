@@ -7,12 +7,14 @@ import javax.swing.JPanel;
 
 import Monopoly.RunGame.GameRule.PropertySquare.Color;
 
-public class Board extends JPanel {
+public class Board {
   public static final int JAIL_POSITION = 10;
   private List<MonopolySquare> squares;
   private int currentPlayerPosition;
   private CardDeck communityChestCardDeck;
   private CardDeck chanceCardDeck;
+  private int newPostion;
+  
 
   public Board() {
     squares = new ArrayList<>();
@@ -66,7 +68,7 @@ public class Board extends JPanel {
     int currentPosition = player.getPosition();
     int boardSize = squares.size();
 
-    int newPostion = (currentPosition + steps) % boardSize;
+    newPostion = (currentPosition + steps) % boardSize;
 
     if (newPostion < currentPosition) {
       player.addBalance(200);
@@ -75,5 +77,9 @@ public class Board extends JPanel {
     player.setPosition(newPostion);
     MonopolySquare currentSquare = squares.get(newPostion);
     currentSquare.doAction(player);
+  }
+  public String Notify(){
+    MonopolySquare currentSquare = squares.get(newPostion);
+    return currentSquare.getNotification();
   }
 }
