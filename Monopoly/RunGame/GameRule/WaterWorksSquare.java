@@ -1,5 +1,7 @@
 package Monopoly.RunGame.GameRule;
 
+import javax.swing.JOptionPane;
+
 import Monopoly.RunGame.Dice;
 import Monopoly.RunGame.GameRule.PropertySquare.Color;
 
@@ -21,26 +23,30 @@ public class WaterWorksSquare extends PropertySquare {
   }
   
   @Override
-  public void doAction(Player player) {
-    if (getOwner() == null) {
-      if (player.getBalance() >= getPrice()) {
-        player.purchaseProperty(this);
+    public void doAction(Player player) {
+      if (getOwner() == null) {
+        int choice = JOptionPane.showConfirmDialog(null, "Do you want to buy Water Works?", "Buy Property", JOptionPane.YES_NO_OPTION);
+        if (choice == JOptionPane.YES_OPTION) {
+          if (player.getBalance() >= getPrice()) {
+            player.purchaseProperty(this);
+            text = player.getName() + " bought the " + getName();
+          } else {
+            JOptionPane.showMessageDialog(null, "Not enough balance to buy Water Works");
+            text = player.getName() + " doesn't have enough balance to buy the " + getName();
+          }
+        }
+      } else if (getOwner() != player) {
+          int diceRoll = player.getRollDice();
+          int rent = calculateRent(diceRoll);
+          player.payRentTo(getOwner(), rent);
+          JOptionPane.showMessageDialog(null,
+              player.getName() + " has paid " + rent + " as rent for landing on Water Works.");
+          text = player.getName() + " has paid " + rent + " as rent for landing on Water Works.";
+      } else {
+        JOptionPane.showMessageDialog(null, player.getName() + " landed on Water Works");
+        text = player.getName() + " landed on Water Works";
       }
-      else {
-      text = "Not enough balance to buy Water Works";
-      }
     }
-    else if (getOwner() != player) {
-      Dice dice = new Dice();
-      int diceRoll = player.getRollDice();
-      int rent = calculateRent(diceRoll);
-      player.payRentTo(getOwner(), rent);
-      text = player.getName() + " has paid " + rent + " as rent for landing on Water Works.";
-    }
-    else {
-      text = player.getName() + " landed on " + "Water Works";
-    }
-  }
   
   @Override
   public String getNotification() {

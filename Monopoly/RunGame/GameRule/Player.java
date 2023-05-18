@@ -15,16 +15,22 @@ public class Player {
   private ArrayList<Card> getOutOfJailCards;
   private boolean inJail;
   private int diceResult;
+  private int jailRollCount;
+  public boolean hasRolledDouble;
+  private String text;
 
   public Player(String name, int balance, int position, String token) {
     this.name = name;
     this.balance = balance;
     this.position = position;
     this.token = token;
+    getOutOfJailCards = new ArrayList<>();
     ownedProperties = new ArrayList<>();
     chanceCards = new ArrayList<>();
     communityChestCards = new ArrayList<>();
     inJail = false;
+    jailRollCount = 0;
+    hasRolledDouble = false;
   }
 
   public String getToken(){
@@ -107,6 +113,32 @@ public class Player {
   public void addGetOutOfJailCard(Card card) {
     getOutOfJailCards.add(card);
   }
+
+  public boolean hasGetOutOfJailCard() {
+    return !getOutOfJailCards.isEmpty();
+  }
+
+  public void setJailRollCount(int count){
+    jailRollCount = count;
+  }
+
+  public void useGetOutOfJailCard() {
+    if (!getOutOfJailCards.isEmpty()) {
+      getOutOfJailCards.remove(0);
+      setInJail(false);
+      setJailRollCount(0);
+    }
+  }
+
+  public boolean hasRolledDouble() {
+    return hasRolledDouble;
+  }
+
+  public void setHasRollDouble(boolean rollDouble) {
+    hasRolledDouble = rollDouble;
+  }
+
+
 
   public void useChanceCard(Card card) {
     if (card.getType() == Card.CardType.CHANCE) {
@@ -219,5 +251,16 @@ public class Player {
   
   public void setInJail(boolean inJail) {
     this.inJail = inJail;
+  }
+
+  public void releaseFromJail() {
+    if (hasGetOutOfJailCard()) {
+      useGetOutOfJailCard();
+      text = getName() + " used a Get Out of Jail Free card and got out of jail.";
+    } else {
+      text = getName() + " rolled doubles and got out of jail.";
+    }
+    setInJail(false);
+    setJailRollCount(0);
   }
 }
