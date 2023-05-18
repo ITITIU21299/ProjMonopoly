@@ -158,10 +158,11 @@ public class MonopolyGame{
         notification.addNotification("                               "+CPlayer.getName()+" move "+ result + " steps                                      ");
         count++;
         //notification.RemoveNotification();
-        CPlayer.setPosition(CPlayer.getPosition()+result);
+        //CPlayer.setPosition(CPlayer.getPosition()+result);
+        board.movePlayer(CPlayer, result);
         int currentPosition = CPlayer.getPosition();
         gameDisplay.setTokenPosition(CurrentPlayerIndex,currentPosition);
-        board.movePlayer(CPlayer, result);
+        
 
         CPlayer.setRollDice(result);
         //System.out.println(CPlayer.getPosition());
