@@ -49,6 +49,10 @@ public class MonopolyGame{
 
         Board board = new Board();
 
+        PlayerMoney[] pMoney = new PlayerMoney[4];
+
+        
+
         //private List<MonopolySquare> squares;
         
     public void setup(){
@@ -100,7 +104,7 @@ public class MonopolyGame{
         gameDisplay.setTokenPosition(2,0);
         gameDisplay.setTokenPosition(3,0);
         
-        notification.setBounds(800, 0, 600, 420);
+        notification.setBounds(800, 0, 600, 320);
 
         dice[1] = new ImageIcon("Monopoly/res/dice1.png");    
         dice[2] = new ImageIcon("Monopoly/res/dice2.png");
@@ -109,11 +113,22 @@ public class MonopolyGame{
         dice[5] = new ImageIcon("Monopoly/res/dice5.png");
         dice[6] = new ImageIcon("Monopoly/res/dice6.png");
 
+        for (int i = 0; i < 4; i++) 
+        {
+            pMoney[i] = new PlayerMoney(players[i]);
+        }
+
+        pMoney[0].setBounds(800, 320, 600, 20);
+        pMoney[1].setBounds(800, 340, 600, 20);
+        pMoney[2].setBounds(800, 360, 600, 20);
+        pMoney[3].setBounds(800, 380, 600, 20);
+
         for (int i=1;i<=6;i++) {
             icon[i] = dice[i].getImage();
             resizedicon[i] = icon[i].getScaledInstance(120, 120, java.awt.Image.SCALE_SMOOTH);
             dIcon[i] = new ImageIcon(resizedicon[i]);
         }       
+
         gameEnd=false;
             diceButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
@@ -135,6 +150,10 @@ public class MonopolyGame{
         frame.revalidate();
         frame.repaint();
         frame.setSize(fwidth+600, fheight+40);
+        frame.getContentPane().add(pMoney[0]);
+        frame.getContentPane().add(pMoney[1]);
+        frame.getContentPane().add(pMoney[2]);
+        frame.getContentPane().add(pMoney[3]);
         frame.getContentPane().add(notification);
         frame.getContentPane().add(dicePanel);
         frame.getContentPane().add(gameDisplay);
@@ -160,6 +179,7 @@ public class MonopolyGame{
         //notification.RemoveNotification();
         //CPlayer.setPosition(CPlayer.getPosition()+result);
         board.movePlayer(CPlayer, result);
+        pMoney[CurrentPlayerIndex].updateMoney();
         int currentPosition = CPlayer.getPosition();
         gameDisplay.setTokenPosition(CurrentPlayerIndex,currentPosition);
         
