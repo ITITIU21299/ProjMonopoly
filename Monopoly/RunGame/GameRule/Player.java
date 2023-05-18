@@ -150,11 +150,10 @@ public class Player {
 
   public void purchaseProperty(PropertySquare property) {
     int propertyPrice = property.getPrice();
-    if (balance >= propertyPrice) {
       balance -= propertyPrice;
-      property.setOwner(this);
+      //property.setOwner(this);
       ownedProperties.add(property);
-    }
+    
   }
   
   public int getRailroadCount() {

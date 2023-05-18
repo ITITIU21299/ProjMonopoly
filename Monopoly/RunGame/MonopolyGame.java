@@ -177,11 +177,18 @@ public class MonopolyGame{
         notification.addNotification("                               "+CPlayer.getName()+" move "+ result + " steps                                      ");
         count++;
         //notification.RemoveNotification();
-        //CPlayer.setPosition(CPlayer.getPosition()+result);
-        board.movePlayer(CPlayer, result);
-        pMoney[CurrentPlayerIndex].updateMoney();
+        CPlayer.setPosition(CPlayer.getPosition()+result);
         int currentPosition = CPlayer.getPosition();
         gameDisplay.setTokenPosition(CurrentPlayerIndex,currentPosition);
+        CPlayer.setPosition(CPlayer.getPosition()-result);
+        board.movePlayer(CPlayer, result);
+
+        pMoney[0].updateMoney();
+        pMoney[1].updateMoney();
+        pMoney[2].updateMoney();
+        pMoney[3].updateMoney();
+        
+        
         
 
         CPlayer.setRollDice(result);
