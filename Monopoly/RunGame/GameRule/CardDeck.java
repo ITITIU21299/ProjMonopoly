@@ -30,7 +30,8 @@ public class CardDeck {
   public Card drawChanceCard() {
     if (!chanceCards.isEmpty()) {
       int randomIndex = random.nextInt(chanceCards.size());
-      return chanceCards.remove(randomIndex);
+      Card drawnCard = chanceCards.remove(randomIndex);
+      return drawnCard;
     } else {
       return null;
     }
@@ -39,7 +40,8 @@ public class CardDeck {
   public Card drawCommunityChestCard() {
     if (!communityChestCards.isEmpty()) {
       int randomIndex = random.nextInt(communityChestCards.size());
-      return communityChestCards.remove(randomIndex);
+      Card drawnCard = communityChestCards.remove(randomIndex);
+      return drawnCard;
     }
     else {
       return null;

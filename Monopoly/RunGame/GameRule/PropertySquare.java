@@ -67,10 +67,11 @@ public class PropertySquare extends MonopolySquare {
         if (player.getBalance() >= getPrice()) {
           setOwner(player);
           player.purchaseProperty(this);
+          text = player.getName() + " bought the " + getName();
         } else {
           JOptionPane.showMessageDialog(null, "Not enough balance to buy " + getName(), "Insufficient Balance",
           JOptionPane.WARNING_MESSAGE);
-          text = "Not enough balance to buy " + getName();
+          text = player.getName() + " doesn't have enough balance to buy the " + getName();
         }
       }
     }

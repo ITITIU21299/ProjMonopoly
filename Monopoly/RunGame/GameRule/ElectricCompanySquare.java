@@ -2,11 +2,18 @@ package Monopoly.RunGame.GameRule;
 
 import java.lang.annotation.Retention;
 
+import javax.swing.JOptionPane;
+
 public class ElectricCompanySquare extends PropertySquare {
   private String text;
+  private int price;
 
   public ElectricCompanySquare(String name, int price) {
     super(name, price, Color.UTILITY);
+  }
+
+  public int getPrice() {
+    return price;
   }
 
   public int calculateRent(int diceRoll) {
@@ -18,23 +25,30 @@ public class ElectricCompanySquare extends PropertySquare {
     }
     return rent;
   }
-  
+
   @Override
   public void doAction(Player player) {
     if (getOwner() == null) {
-      if (player.getBalance() >= getPrice()) {
-        player.purchaseProperty(this);
-      } else {
-        text = "Not enough balance to buy Electric Company";
+      int choice = JOptionPane.showConfirmDialog(null, "Do you want to buy the Electric Company?", "Buy Property", JOptionPane.YES_NO_OPTION);
+      if (choice == JOptionPane.YES_OPTION) {
+        if (player.getBalance() >= getPrice()) {
+          player.purchaseProperty(this);
+          text = player.getName() + " bought the Electric Company";
+        } else {
+          JOptionPane.showMessageDialog(null, "Not enough balance to buy the Electric Company");
+          text = player.getName() + " doesn't have enough balance to buy the Electric Company";
+        }
       }
     } else if (getOwner() != player) {
-      int diceRoll = player.getRollDice();
-      int rent = calculateRent(diceRoll);
-      player.payRentTo(getOwner(), rent);
-      text = player.getName() + " has paid " + rent + " as rent for landing on Electric Company.";
+        int diceRoll = player.getRollDice();
+        int rent = calculateRent(diceRoll);
+        player.payRentTo(getOwner(), rent);
+        JOptionPane.showMessageDialog(null,
+        player.getName() + " has paid " + rent + " as rent for landing on Electric Company.");
+        text = player.getName() + " has paid " + rent + " as rent for landing on Electric Company.";
     }
   }
-  
+
   @Override
   public String getNotification() {
     return text;
