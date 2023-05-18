@@ -1,6 +1,8 @@
 package Monopoly.RunGame.GameRule;
 
 import Monopoly.RunGame.Dice;
+
+import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -18,12 +20,14 @@ public class Player {
   private int jailRollCount;
   public boolean hasRolledDouble;
   private String text;
-
-  public Player(String name, int balance, int position, String token) {
+  private Color color;
+  
+  public Player(String name, int balance, int position, String token, Color color) {
     this.name = name;
     this.balance = balance;
     this.position = position;
     this.token = token;
+    this.color = color;
     getOutOfJailCards = new ArrayList<>();
     ownedProperties = new ArrayList<>();
     chanceCards = new ArrayList<>();
@@ -47,6 +51,9 @@ public class Player {
 
   public int getPosition() {
     return position;
+  }
+  public Color getColor() {
+    return color;
   }
 
   public List<PropertySquare> getOwnedProperties() {

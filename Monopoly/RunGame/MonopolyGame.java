@@ -4,6 +4,7 @@ import Monopoly.RunGame.GameRule.Player;
 import Monopoly.RunGame.GameRule.Board;
 
 import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
@@ -33,17 +34,20 @@ public class MonopolyGame{
         Image[] icon = new Image[10];
         Image[] resizedicon = new Image[10];
         Icon[] dIcon = new Icon[10];
-        
+        ImageIcon[] tokenIcon = new ImageIcon[5];
+        Color[] ptextcolor = new Color[5];
+
         int CurrentPlayerIndex = 0;
         
         Notification notification = new Notification();
         
         int count=0;
 
-        Player[] players = {new Player("Player 1",1000,0,"Monopoly/res/token_car.png"),
-        new Player("Player 2",1000,0,"Monopoly/res/token_dog.png"),
-        new Player("Player 3",1000,0,"Monopoly/res/token_hat.png"),
-        new Player("Player 4",1000,0,"Monopoly/res/token_ship.png")};
+        
+        Player[] players = {new Player("Player 1",1000,0,"Monopoly/res/token_car.png", new Color(255, 0, 0)),
+        new Player("Player 2",1000,0,"Monopoly/res/token_dog.png", new Color(30, 144, 255)),
+        new Player("Player 3",1000,0,"Monopoly/res/token_hat.png", new Color(255, 0, 255)),
+        new Player("Player 4",1000,0,"Monopoly/res/token_ship.png", new Color(0, 0, 0))};
 
         GameDisplay gameDisplay = new GameDisplay(fwidth, fheight);
 
@@ -113,15 +117,25 @@ public class MonopolyGame{
         dice[5] = new ImageIcon("Monopoly/res/dice5.png");
         dice[6] = new ImageIcon("Monopoly/res/dice6.png");
 
+        tokenIcon[0]= new ImageIcon("Monopoly/res/token_car.png");
+        tokenIcon[1]= new ImageIcon("Monopoly/res/token_dog.png");
+        tokenIcon[2]= new ImageIcon("Monopoly/res/token_hat.png");
+        tokenIcon[3]= new ImageIcon("Monopoly/res/token_ship.png");
+
+        ptextcolor[1] = new Color(255, 0, 0);
+        ptextcolor[1] = new Color(255, 0, 0);
+        ptextcolor[1] = new Color(255, 0, 0);
+        ptextcolor[1] = new Color(255, 0, 0);
+
         for (int i = 0; i < 4; i++) 
         {
-            pMoney[i] = new PlayerMoney(players[i]);
+            pMoney[i] = new PlayerMoney(players[i], tokenIcon[i]);
         }
 
-        pMoney[0].setBounds(800, 320, 600, 25);
-        pMoney[1].setBounds(800, 350, 600, 25);
-        pMoney[2].setBounds(800, 380, 600, 25);
-        pMoney[3].setBounds(800, 410, 600, 25);
+        pMoney[0].setBounds(800, 320, 600, 35);
+        pMoney[1].setBounds(800, 360, 600, 35);
+        pMoney[2].setBounds(800, 400, 600, 35);
+        pMoney[3].setBounds(800, 440, 600, 35);
 
         for (int i=1;i<=6;i++) {
             icon[i] = dice[i].getImage();
@@ -173,7 +187,8 @@ public class MonopolyGame{
             notification.RemoveNotification();
             count=0;
         }
-
+        notification.setForeground(CPlayer.getColor());
+        //System.out.println(CPlayer.getColor());
         notification.addNotification("                               "+CPlayer.getName()+" move "+ result + " steps                                      ");
         count++;
         //notification.RemoveNotification();
