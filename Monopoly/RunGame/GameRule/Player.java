@@ -99,15 +99,24 @@ public class Player {
   }
 
   public void moveToGo() {
-    position = 0;
+    int currentPosition = getPosition();
+    int goPosition = 0;
+    int distance = goPosition - currentPosition;
     balance += 200;
-    System.out.println(name + " go to GO and collectd 200$");
+    move(distance);
+  }
+
+  public void move(int distance) {
+    int currentPosition = getPosition();
+    int boardSize = 40;
+    int newPostion = (currentPosition + distance) % boardSize;
+    setPosition(newPostion);
   }
 
   public void moveBack(int numSpaces) {
-    int newPostion = (position - numSpaces + 40) % 40;
-    position = newPostion;
-    System.out.println(name + " moved back " + numSpaces + " spaces.");
+    int currentPosition = getPosition();
+    int newPosition = (currentPosition - numSpaces + 40) % 40;
+    setPosition(newPosition);
   }
 
   public void addGetOutOfJailCard(Card card) {
@@ -182,11 +191,10 @@ public class Player {
 
   public void purchaseProperty(PropertySquare property) {
     int propertyPrice = property.getPrice();
-    if (balance >= propertyPrice) {
       balance -= propertyPrice;
       property.setOwner(this);
       ownedProperties.add(property);
-    }
+    
   }
   
   public int getRailroadCount() {
