@@ -7,4 +7,4 @@ public class main {
         MonopolyGame game = new MonopolyGame();
         game.setup();
     }
-}
+}   
