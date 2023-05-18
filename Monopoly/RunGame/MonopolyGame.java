@@ -169,7 +169,7 @@ public class MonopolyGame{
         int result=result1+result2;
         
 
-        if (count==9){
+        if (count==4){
             notification.RemoveNotification();
             count=0;
         }
