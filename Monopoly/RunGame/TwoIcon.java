@@ -18,8 +18,8 @@ public class TwoIcon implements Icon {
     @Override
     public void paintIcon(Component c, Graphics g, int x, int y) {
         int mid = getIconHeight() / 2;
-        int y1 = y + mid - icon1.getIconHeight() / 2;
-        int y2 = y + mid - icon2.getIconHeight() / 2;
+        int y1 = y + mid - icon1.getIconHeight() / 2-75;
+        int y2 = y + mid - icon2.getIconHeight() / 2-75;
         icon1.paintIcon(c, g, x, y1);
         icon2.paintIcon(c, g, x + icon1.getIconWidth() + iconGap, y2);
     }

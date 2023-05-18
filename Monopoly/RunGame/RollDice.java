@@ -24,7 +24,7 @@ public class RollDice implements ActionListener {
         this.dice = dice;
         this.label = label;
         dice.addActionListener(this);
-
+        
         image[1] = new ImageIcon("Monopoly/res/dice1.png");    
         image[2] = new ImageIcon("Monopoly/res/dice2.png");
         image[3] = new ImageIcon("Monopoly/res/dice3.png");

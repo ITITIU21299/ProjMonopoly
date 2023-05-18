@@ -118,10 +118,10 @@ public class MonopolyGame{
             pMoney[i] = new PlayerMoney(players[i]);
         }
 
-        pMoney[0].setBounds(800, 320, 600, 20);
-        pMoney[1].setBounds(800, 340, 600, 20);
-        pMoney[2].setBounds(800, 360, 600, 20);
-        pMoney[3].setBounds(800, 380, 600, 20);
+        pMoney[0].setBounds(800, 320, 600, 25);
+        pMoney[1].setBounds(800, 350, 600, 25);
+        pMoney[2].setBounds(800, 380, 600, 25);
+        pMoney[3].setBounds(800, 410, 600, 25);
 
         for (int i=1;i<=6;i++) {
             icon[i] = dice[i].getImage();
@@ -140,7 +140,7 @@ public class MonopolyGame{
             });
 
         JPanel dicePanel = new JPanel();
-        dicePanel.setBounds(fwidth+80, fheight/2, 400, fheight/2);
+        dicePanel.setBounds(fwidth+80, 500, 400, 300);
         dicePanel.setLayout(new BorderLayout(0, -150));
         dicePanel.add(diceButton, BorderLayout.SOUTH);
         dicePanel.add(label, BorderLayout.CENTER);
