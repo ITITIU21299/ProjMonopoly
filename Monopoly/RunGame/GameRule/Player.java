@@ -9,6 +9,7 @@ import java.util.List;
 public class Player {
   private String name;
   private int balance;
+  private int prevposition;
   private int position;
   private String token;
   private List<PropertySquare> ownedProperties;
@@ -21,13 +22,15 @@ public class Player {
   public boolean hasRolledDouble;
   private String text;
   private Color color;
-  
-  public Player(String name, int balance, int position, String token, Color color) {
+  private int index;
+
+  public Player(String name, int balance, int position, String token, Color color, int index) {
     this.name = name;
     this.balance = balance;
     this.position = position;
     this.token = token;
     this.color = color;
+    this.index = index;
     getOutOfJailCards = new ArrayList<>();
     ownedProperties = new ArrayList<>();
     chanceCards = new ArrayList<>();
@@ -52,8 +55,17 @@ public class Player {
   public int getPosition() {
     return position;
   }
+
+  public int getPrevPosition() {
+    return prevposition;
+  }
+
   public Color getColor() {
     return color;
+  }
+  
+  public int getIndex() {
+    return index;
   }
 
   public List<PropertySquare> getOwnedProperties() {
@@ -80,8 +92,13 @@ public class Player {
     this.balance = balance;
   }
 
-  public void setPosition(int position) {
-    this.position = position;
+  public void setPosition(int newPosition) {
+    setPrevPosition();
+    this.position = newPosition;
+  }
+
+  public void setPrevPosition () {
+    prevposition = position;
   }
 
   public void addChanceCard(Card card) {

@@ -44,10 +44,10 @@ public class MonopolyGame{
         int count=0;
 
         
-        Player[] players = {new Player("Player 1",1000,0,"Monopoly/res/token_car.png", new Color(255, 0, 0)),
-        new Player("Player 2",1000,0,"Monopoly/res/token_dog.png", new Color(30, 144, 255)),
-        new Player("Player 3",1000,0,"Monopoly/res/token_hat.png", new Color(255, 0, 255)),
-        new Player("Player 4",1000,0,"Monopoly/res/token_ship.png", new Color(0, 0, 0))};
+        Player[] players = {new Player("Player 1",1000,0,"Monopoly/res/token_car.png", new Color(255, 0, 0), 0),
+        new Player("Player 2",1000,0,"Monopoly/res/token_dog.png", new Color(30, 144, 255), 1),
+        new Player("Player 3",1000,0,"Monopoly/res/token_hat.png", new Color(255, 0, 255), 2),
+        new Player("Player 4",1000,0,"Monopoly/res/token_ship.png", new Color(0, 0, 0), 3)};
 
         GameDisplay gameDisplay = new GameDisplay(fwidth, fheight);
 
@@ -103,10 +103,10 @@ public class MonopolyGame{
         
         
         gameDisplay.setBounds(0, 0, fwidth, fheight);
-        gameDisplay.setTokenPosition(0,0);
-        gameDisplay.setTokenPosition(1,0);
-        gameDisplay.setTokenPosition(2,0);
-        gameDisplay.setTokenPosition(3,0);
+        gameDisplay.setInitialTokenPosition(players[0]);
+        gameDisplay.setInitialTokenPosition(players[1]);
+        gameDisplay.setInitialTokenPosition(players[2]);
+        gameDisplay.setInitialTokenPosition(players[3]);
         
         notification.setBounds(800, 0, 600, 320);
 
@@ -178,11 +178,12 @@ public class MonopolyGame{
     public void PlayTurn(Player CPlayer){
         int result1 = random.nextInt(6) +1;
         int result2 = random.nextInt(6) +1;
+
         Dice.setResult(result1, result2);
         label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
         int result=result1+result2;
         
-
+        Player player = CPlayer;
         if (count==4){
             notification.RemoveNotification();
             count=0;
@@ -194,7 +195,7 @@ public class MonopolyGame{
         //notification.RemoveNotification();
         CPlayer.setPosition(CPlayer.getPosition()+result);
         int currentPosition = CPlayer.getPosition();
-        gameDisplay.setTokenPosition(CurrentPlayerIndex,currentPosition);
+        gameDisplay.setTokenPosition(CPlayer);
         CPlayer.setPosition(CPlayer.getPosition()-result);
         board.movePlayer(CPlayer, result);
 
