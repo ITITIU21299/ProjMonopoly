@@ -23,6 +23,7 @@ public class Player {
   private String text;
   private Color color;
   private int index;
+  private boolean chanceCardGO;
 
   public Player(String name, int balance, int position, String token, Color color, int index) {
     this.name = name;
@@ -171,13 +172,25 @@ public class Player {
     hasRolledDouble = rollDouble;
   }
 
+  public void moveToGoChaneCard() {
+    position = 0;
+    chanceCardGO = true;
+  }
+
+  public void setchanceCardGO(boolean chanceCardGO) {
+    this.chanceCardGO = chanceCardGO;
+  }
+
+  public boolean getchanceCardGO() {
+    return chanceCardGO;
+  }
 
 
   public void useChanceCard(Card card) {
     if (card.getType() == Card.CardType.CHANCE) {
       String cardText = card.getText();
       if (cardText.equals("Advance to GO. Collect 200$.")) {
-        moveToGo();
+        moveToGoChaneCard();
         addBalance(200);
       } else if (cardText.equals("Go Back 3 Spaces.")) {
         moveBack(3);
@@ -195,7 +208,7 @@ public class Player {
     if (card.getType() == Card.CardType.COMMUNITY_CHEST) {
       String cardText = card.getText();
       if (cardText.equals("Advance to GO. Collect 200$.")) {
-        moveToGo();
+        moveToGoChaneCard();
         addBalance(200);
       }
       else if (cardText.equals("Bank error in your favor. Collect $200.")) {
