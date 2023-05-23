@@ -149,12 +149,17 @@ public class MonopolyGame{
                 public void actionPerformed(ActionEvent e) {
                     if (!gameEnd){
                         Player currentplayer = players[CurrentPlayerIndex];
+<<<<<<< HEAD
                         if (currentplayer.isInJail() == true && currentplayer.hasGetOutOfJailCard() == true) {
                             int choice = JOptionPane.showConfirmDialog(null, "Would player " + currentplayer.getName() + " like to use get out of jail card?", "Use out of jail card?", JOptionPane.YES_NO_OPTION);
                             if (choice == JOptionPane.YES_OPTION) {
                                 currentplayer.useGetOutOfJailCard();
                                 currentplayer.releaseFromJail();
                             }
+=======
+                        if (currentplayer.hasGetOutOfJailCard()){
+                            currentplayer.useGetOutOfJailCard();
+>>>>>>> d936ba10d3c7fd04048c77a4d75642b10fe853ae
                         }
                         PlayTurn(currentplayer);
                     }
@@ -183,6 +188,7 @@ public class MonopolyGame{
 
         //startNewGame();
     }
+<<<<<<< HEAD
     public void PlayTurn(Player player){
         //Player player = CPlayer;
         if (CurrentPlayerIndex % 4 ==0){
@@ -198,10 +204,51 @@ public class MonopolyGame{
 
         //player.addChanceCard(new Card("Get Out of Jail Free.", Card.CardType.CHANCE));
 
+=======
+    public void PlayTurn(Player CPlayer){
+        if (CPlayer.getBalance()<=0){
+            CurrentPlayerIndex++;
+            if (CurrentPlayerIndex==4)
+            CurrentPlayerIndex=0;
+            return;
+        }
+        CPlayer.setHasRollDouble(false);
+        int result1 = random.nextInt(6) +1;
+        int result2 = random.nextInt(6) + 1;
+>>>>>>> d936ba10d3c7fd04048c77a4d75642b10fe853ae
         Dice.setResult(result1, result2);
         label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
+
+        if (result1==result2) {
+            CPlayer.setHasRollDouble(true);
+        }
+
+        if (CPlayer.isInJail()&&!CPlayer.hasRolledDouble()){
+            CurrentPlayerIndex++;
+            if (CurrentPlayerIndex==4)
+            CurrentPlayerIndex=0;
+            return;
+        }
+        if (CPlayer.isInJail()&&CPlayer.hasRolledDouble()){
+            CPlayer.releaseFromJail();
+        }
+
+        
         int result=result1+result2;
+<<<<<<< HEAD
         player.setRollDice(result);
+=======
+        
+        //Player player = CPlayer;
+        if (count==7){
+            notification.RemoveNotification();
+            count=0;
+        }
+        notification.setForeground(CPlayer.getColor());
+        notification.addNotification("                               "+CPlayer.getName()+" move "+ result + " steps                                      ");
+        count++;
+        //notification.RemoveNotification();
+>>>>>>> d936ba10d3c7fd04048c77a4d75642b10fe853ae
 
         //player.addGetOutOfJailCard(new Card("Get Out of Jail Free.", Card.CardType.CHANCE));
         if (player.isInJail() == true) {
@@ -233,7 +280,24 @@ public class MonopolyGame{
         pMoney[2].updateMoney();
         pMoney[3].updateMoney();
         
+<<<<<<< HEAD
         notification.addNotification(player.getColor(),board.Notify());
+=======
+        CPlayer.setRollDice(result);
+        notification.addNotification(board.Notify());
+        if (CPlayer.getPosition()==10 && CPlayer.isInJail() && CPlayer.JailCheck()){
+            gameDisplay.setTokenPosition(CPlayer);
+            CPlayer.setJailCheck(false);
+        }
+        if (CPlayer.getPosition()==0 && CPlayer.getchanceCardGO()){
+            gameDisplay.setTokenPosition(CPlayer);
+            CPlayer.setchanceCardGO(false);
+        }
+        
+        if (CPlayer.getBalance()<=0){
+            bankrupted++;
+        }
+>>>>>>> d936ba10d3c7fd04048c77a4d75642b10fe853ae
 
         if (bankrupted==3){
             gameEnd=true;
