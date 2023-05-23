@@ -67,7 +67,7 @@ public class Board {
   public void movePlayer(Player player, int steps) {
     int currentPosition = player.getPosition();
     int boardSize = squares.size();
-
+    
     newPostion = (currentPosition + steps) % boardSize;
 
     if (newPostion < currentPosition) {

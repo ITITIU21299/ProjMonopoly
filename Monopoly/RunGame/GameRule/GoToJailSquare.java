@@ -1,6 +1,6 @@
 package Monopoly.RunGame.GameRule;
 
-public class GoToJailSquare extends MonopolySquare {
+public class GoToJailSquare extends MonopolySquare   {
   private String text;
   public GoToJailSquare() {
     
@@ -8,7 +8,7 @@ public class GoToJailSquare extends MonopolySquare {
   
   @Override
   public void doAction(Player player) {
-    player.setPosition(Board.JAIL_POSITION);
+    //player.setPosition(Board.JAIL_POSITION);
     player.setInJail(true);
     player.setJailCheck(true);
     text = player.getName() + " has been sent to jail.";

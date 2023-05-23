@@ -188,6 +188,9 @@ public class MonopolyGame{
         CPlayer.setHasRollDouble(false);
         int result1 = random.nextInt(6) +1;
         int result2 = random.nextInt(6) + 1;
+        Dice.setResult(result1, result2);
+        label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
+
         if (result1==result2) {
             CPlayer.setHasRollDouble(true);
         }
@@ -202,8 +205,7 @@ public class MonopolyGame{
             CPlayer.releaseFromJail();
         }
 
-        Dice.setResult(result1, result2);
-        label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
+        
         int result=result1+result2;
         
         //Player player = CPlayer;
@@ -212,26 +214,20 @@ public class MonopolyGame{
             count=0;
         }
         notification.setForeground(CPlayer.getColor());
-        //System.out.println(CPlayer.getColor());
         notification.addNotification("                               "+CPlayer.getName()+" move "+ result + " steps                                      ");
         count++;
         //notification.RemoveNotification();
-        CPlayer.setPosition(CPlayer.getPosition()+result);
-        int currentPosition = CPlayer.getPosition();
-        gameDisplay.setTokenPosition(CPlayer);
-        CPlayer.setPosition(CPlayer.getPosition()-result);
+
         board.movePlayer(CPlayer, result);
+        
+        gameDisplay.setTokenPosition(CPlayer);
 
         pMoney[0].updateMoney();
         pMoney[1].updateMoney();
         pMoney[2].updateMoney();
         pMoney[3].updateMoney();
         
-        
-        
-
         CPlayer.setRollDice(result);
-        //System.out.println(CPlayer.getPosition());
         notification.addNotification(board.Notify());
         if (CPlayer.getPosition()==10 && CPlayer.isInJail() && CPlayer.JailCheck()){
             gameDisplay.setTokenPosition(CPlayer);

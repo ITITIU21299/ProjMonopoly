@@ -1,10 +1,13 @@
 package Monopoly.RunGame.GameRule;
 
 import Monopoly.RunGame.Dice;
+import Monopoly.RunGame.GameDisplay;
 
 import java.awt.Color;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JOptionPane;
 
 public class Player {
   private String name;
@@ -95,11 +98,11 @@ public class Player {
   }
 
   public void setPosition(int newPosition) {
-    setPrevPosition();
+    setPrevPosition(this.position);
     this.position = newPosition;
   }
 
-  public void setPrevPosition () {
+  public void setPrevPosition (int position) {
     prevposition = position;
   }
 
@@ -173,13 +176,14 @@ public class Player {
     hasRolledDouble = rollDouble;
   }
 
-  public void moveToGoChaneCard() {
-    position = 0;
-    chanceCardGO = true;
-  }
-
   public void setchanceCardGO(boolean chanceCardGO) {
     this.chanceCardGO = chanceCardGO;
+  }
+
+  public void moveToGoChaneCard() {
+    setchanceCardGO(false);
+    position = 0;
+    chanceCardGO = true;
   }
 
   public boolean getchanceCardGO() {
@@ -304,6 +308,13 @@ public class Player {
   
   public void setInJail(boolean inJail) {
     this.inJail = inJail;
+    if (inJail == true) toJail();
+  }
+
+  public void toJail () {
+    int tmp = prevposition;
+    this.setPosition(10); 
+    this.setPrevPosition(tmp);
   }
 
   public void releaseFromJail() {

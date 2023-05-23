@@ -15,7 +15,7 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import Monopoly.RunGame.GameRule.Player;
 
-public class GameDisplay extends JPanel {
+public class GameDisplay extends JPanel{
     HashMap <Integer, Player> playersMap = new HashMap<Integer, Player>();
     Optional<Integer> firstKey = playersMap.keySet().stream().findFirst();
     private int[] key = new int[5];
@@ -103,12 +103,12 @@ public class GameDisplay extends JPanel {
                 
         coor = player.getPosition() % 40;
         playerIndex = player.getIndex();
-        System.out.println(coor);
-        squareToDrawn [player.getPrevPosition()].removePlayer(player);
-        squareToDrawn [coor].addPlayer(player);
+        //System.out.println(coor);
+        
+        squareToDrawn[player.getPrevPosition()].removePlayer(player);
+        squareToDrawn[coor].addPlayer(player);
         
         //playersMap = squareToDrawn[player.getPosition()].getMap();
-
 
         //System.out.println(coor + " " + squareToDrawn[coor].getCoor());
         
