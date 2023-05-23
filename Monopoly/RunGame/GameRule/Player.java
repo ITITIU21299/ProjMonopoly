@@ -29,6 +29,8 @@ public class Player {
   private boolean chanceCardGO;
   private boolean jailcheck;
 
+  public Player() {} //quick constructor
+
   public Player(String name, int balance, int position, String token, Color color, int index) {
     this.name = name;
     this.balance = balance;
@@ -174,8 +176,7 @@ public class Player {
   public void useGetOutOfJailCard() {
     if (!getOutOfJailCards.isEmpty()) {
       getOutOfJailCards.remove(0);
-      setInJail(false);
-      setJailRollCount(0);
+      releaseFromJail();
     }
   }
 
@@ -311,8 +312,9 @@ public class Player {
     return diceResult;
   }
 
-  public void setRollDice(int diceResult){
-    this.diceResult=diceResult;
+  public void setRollDice(int result1, int result2) {
+    this.diceResult=result1 + result2;
+    setHasRollDouble(result1 == result2);
   }
 
   public boolean isInJail() {
@@ -331,16 +333,6 @@ public class Player {
   }
 
   public void releaseFromJail() {
-<<<<<<< HEAD
-=======
-    if (hasGetOutOfJailCard()) {
-      useGetOutOfJailCard();
-      text = getName() + " used a Get Out of Jail Free card and got out of jail.";
-    } else 
-    {
-      text = getName() + " rolled doubles and got out of jail.";
-    }
->>>>>>> d936ba10d3c7fd04048c77a4d75642b10fe853ae
     setInJail(false);
     setJailRollCount(0);
   }

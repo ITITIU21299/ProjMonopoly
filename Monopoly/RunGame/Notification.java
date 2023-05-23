@@ -15,12 +15,8 @@ public class Notification extends JPanel{
         notificationLabel = new JLabel(text);
         notificationLabel.setForeground(color);
         notificationLabel.setAlignmentX(Component.CENTER_ALIGNMENT);
-        notificationLabel.setHorizontalAlignment(SwingConstants.LEFT);
-<<<<<<< HEAD
+        notificationLabel.setHorizontalAlignment(SwingConstants.RIGHT);
         Font labelFont = new Font("Arial ", Font.BOLD, 17);
-=======
-        Font labelFont = new Font("Arial", Font.BOLD, 13);
->>>>>>> d936ba10d3c7fd04048c77a4d75642b10fe853ae
         notificationLabel.setFont(labelFont);
         add(notificationLabel);
 
