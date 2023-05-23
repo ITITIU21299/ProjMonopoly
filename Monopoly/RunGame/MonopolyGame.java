@@ -148,6 +148,9 @@ public class MonopolyGame{
                 public void actionPerformed(ActionEvent e) {
                     if (!gameEnd){
                         Player currentplayer = players[CurrentPlayerIndex];
+                        if (currentplayer.hasGetOutOfJailCard()){
+                            currentplayer.useGetOutOfJailCard();
+                        }
                         PlayTurn(currentplayer);
                     }
                }
@@ -176,15 +179,35 @@ public class MonopolyGame{
         //startNewGame();
     }
     public void PlayTurn(Player CPlayer){
+        if (CPlayer.getBalance()<=0){
+            CurrentPlayerIndex++;
+            if (CurrentPlayerIndex==4)
+            CurrentPlayerIndex=0;
+            return;
+        }
+        CPlayer.setHasRollDouble(false);
         int result1 = random.nextInt(6) +1;
         int result2 = random.nextInt(6) + 1;
-        
+        if (result1==result2) {
+            CPlayer.setHasRollDouble(true);
+        }
+
+        if (CPlayer.isInJail()&&!CPlayer.hasRolledDouble()){
+            CurrentPlayerIndex++;
+            if (CurrentPlayerIndex==4)
+            CurrentPlayerIndex=0;
+            return;
+        }
+        if (CPlayer.isInJail()&&CPlayer.hasRolledDouble()){
+            CPlayer.releaseFromJail();
+        }
+
         Dice.setResult(result1, result2);
         label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
         int result=result1+result2;
         
-        Player player = CPlayer;
-        if (count==4){
+        //Player player = CPlayer;
+        if (count==7){
             notification.RemoveNotification();
             count=0;
         }
@@ -210,12 +233,18 @@ public class MonopolyGame{
         CPlayer.setRollDice(result);
         //System.out.println(CPlayer.getPosition());
         notification.addNotification(board.Notify());
+        if (CPlayer.getPosition()==10 && CPlayer.isInJail() && CPlayer.JailCheck()){
+            gameDisplay.setTokenPosition(CPlayer);
+            CPlayer.setJailCheck(false);
+        }
         if (CPlayer.getPosition()==0 && CPlayer.getchanceCardGO()){
             gameDisplay.setTokenPosition(CPlayer);
             CPlayer.setchanceCardGO(false);
         }
         
-
+        if (CPlayer.getBalance()<=0){
+            bankrupted++;
+        }
 
         if (bankrupted==3){
             gameEnd=true;

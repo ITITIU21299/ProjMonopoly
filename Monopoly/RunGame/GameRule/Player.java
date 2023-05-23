@@ -24,6 +24,7 @@ public class Player {
   private Color color;
   private int index;
   private boolean chanceCardGO;
+  private boolean jailcheck;
 
   public Player(String name, int balance, int position, String token, Color color, int index) {
     this.name = name;
@@ -185,6 +186,13 @@ public class Player {
     return chanceCardGO;
   }
 
+  public boolean JailCheck(){
+    return jailcheck;
+  }
+
+  public void setJailCheck(boolean jailcheck){
+    this.jailcheck=jailcheck;
+  }
 
   public void useChanceCard(Card card) {
     if (card.getType() == Card.CardType.CHANCE) {
@@ -196,7 +204,7 @@ public class Player {
         moveBack(3);
       } else if (cardText.equals("Speeding fine $15.")) {
         subtractBalance(15);
-      } else if (cardText.equals("Get Out of Jail Free.")) {
+      } else if (cardText.equals("Get Out of Jail.")) {
         addGetOutOfJailCard(card);
       } else if (cardText.equals("Your building loan matures. Collect $150.")) {
         addBalance(150);
@@ -214,7 +222,7 @@ public class Player {
       else if (cardText.equals("Bank error in your favor. Collect $200.")) {
         addBalance(200);
       }
-      else if (cardText.equals("Get Out of Jail Free.")) {
+      else if (cardText.equals("Get Out of Jail.")) {
         addGetOutOfJailCard(card);
       }
       else if (cardText.equals("Receive $25 consultancy fee.")) {
@@ -302,7 +310,8 @@ public class Player {
     if (hasGetOutOfJailCard()) {
       useGetOutOfJailCard();
       text = getName() + " used a Get Out of Jail Free card and got out of jail.";
-    } else {
+    } else 
+    {
       text = getName() + " rolled doubles and got out of jail.";
     }
     setInJail(false);

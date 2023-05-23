@@ -13,7 +13,7 @@ public class ChanceSquare extends MonopolySquare{
     Card drawnCard = chanceCardDeck.drawCommunityChestCard();
     player.useCommnutityChestCard(drawnCard);
     if (drawnCard != null) {
-      text = player.getName() + " has drawn the card: " + drawnCard.getText();
+      text = player.getName() + " has drawn the card: \n" + drawnCard.getText();
     }
   }
   
