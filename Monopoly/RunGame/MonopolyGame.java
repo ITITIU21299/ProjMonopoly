@@ -2,6 +2,7 @@ package Monopoly.RunGame;
 
 import Monopoly.RunGame.GameRule.Player;
 import Monopoly.RunGame.GameRule.Board;
+import Monopoly.RunGame.GameRule.Card;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -9,11 +10,11 @@ import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import java.awt.event.ActionListener;
 import java.util.Random;
-import java.util.Timer;
-import java.util.TimerTask;
+
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
@@ -108,7 +109,7 @@ public class MonopolyGame{
         gameDisplay.setInitialTokenPosition(players[2]);
         gameDisplay.setInitialTokenPosition(players[3]);
         
-        notification.setBounds(800, 0, 600, 320);
+        notification.setBounds(800, 0, 600, 360);
 
         dice[1] = new ImageIcon("Monopoly/res/dice1.png");    
         dice[2] = new ImageIcon("Monopoly/res/dice2.png");
@@ -132,10 +133,10 @@ public class MonopolyGame{
             pMoney[i] = new PlayerMoney(players[i], tokenImage[i]);
         }
 
-        pMoney[0].setBounds(800, 320, 600, 35);
-        pMoney[1].setBounds(800, 360, 600, 35);
-        pMoney[2].setBounds(800, 400, 600, 35);
-        pMoney[3].setBounds(800, 440, 600, 35);
+        pMoney[0].setBounds(800, 350, 600, 33);
+        pMoney[1].setBounds(800, 390, 600, 33);
+        pMoney[2].setBounds(800, 430, 600, 33);
+        pMoney[3].setBounds(800, 470, 600, 33);
 
         for (int i=1;i<=6;i++) {
             icon[i] = dice[i].getImage();
@@ -148,13 +149,20 @@ public class MonopolyGame{
                 public void actionPerformed(ActionEvent e) {
                     if (!gameEnd){
                         Player currentplayer = players[CurrentPlayerIndex];
+                        if (currentplayer.isInJail() == true && currentplayer.hasGetOutOfJailCard() == true) {
+                            int choice = JOptionPane.showConfirmDialog(null, "Would player " + currentplayer.getName() + " like to use get out of jail card?", "Use out of jail card?", JOptionPane.YES_NO_OPTION);
+                            if (choice == JOptionPane.YES_OPTION) {
+                                currentplayer.useGetOutOfJailCard();
+                                currentplayer.releaseFromJail();
+                            }
+                        }
                         PlayTurn(currentplayer);
                     }
-               }
+                }
             });
 
         JPanel dicePanel = new JPanel();
-        dicePanel.setBounds(fwidth+80, 500, 400, 300);
+        dicePanel.setBounds(fwidth+80, 550, 400, 250);
         dicePanel.setLayout(new BorderLayout(0, -150));
         dicePanel.add(diceButton, BorderLayout.SOUTH);
         dicePanel.add(label, BorderLayout.CENTER);
@@ -175,43 +183,62 @@ public class MonopolyGame{
 
         //startNewGame();
     }
-    public void PlayTurn(Player CPlayer){
+    public void PlayTurn(Player player){
+        //Player player = CPlayer;
+        if (CurrentPlayerIndex % 4 ==0){
+            notification.RemoveNotification();
+            CurrentPlayerIndex=0;
+        }
+
+
         int result1 = random.nextInt(6) +1;
         int result2 = random.nextInt(6) + 1;
+        result1 = 3;
+        result2 = 3;
+
+        //player.addChanceCard(new Card("Get Out of Jail Free.", Card.CardType.CHANCE));
 
         Dice.setResult(result1, result2);
         label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
         int result=result1+result2;
-        
-        Player player = CPlayer;
-        if (count==4){
-            notification.RemoveNotification();
-            count=0;
-        }
-        notification.setForeground(CPlayer.getColor());
-        notification.addNotification("                               "+CPlayer.getName()+" move "+ result + " steps                                      ");
-        count++;
-        //notification.RemoveNotification();
+        player.setRollDice(result);
 
-        board.movePlayer(CPlayer, result);
-        
-        gameDisplay.setTokenPosition(CPlayer);
+        //player.addGetOutOfJailCard(new Card("Get Out of Jail Free.", Card.CardType.CHANCE));
+        if (player.isInJail() == true) {
+            player.increaseJailRollCount();
+            if (result1 == result2) {
+                notification.addNotification(player.getColor(),"                                          "+player.getName()+" has rolled a double " + result1 + " and get out of jail                                        ");
+                player.releaseFromJail();
+            } else
+            if (player.getJailRollCount() == 3) {
+                notification.addNotification(player.getColor(),"                                          "+player.getName()+" got out of jail after 3 turns and paid $50 fine                                        ");
+                player.subtractBalance(50);
+                player.releaseFromJail();
+            } 
+   
+            if (player.isInJail() == true) {
+                count = (count + 1) % 4;
+                CurrentPlayerIndex = (CurrentPlayerIndex + 1) % 4;
+                notification.addNotification(player.getColor(),"                                    "+player.getName()+" has been in jail for "+ player.getJailRollCount() + " turn(s)                                 ");
+                return;
+            }
+        }
+        CurrentPlayerIndex = (CurrentPlayerIndex + 1) % 4;
+        notification.addNotification(player.getColor(),"                               "+player.getName()+" move "+ result + " steps                                      ");
+        board.movePlayer(player, result);
+        gameDisplay.setTokenPosition(player);
 
         pMoney[0].updateMoney();
         pMoney[1].updateMoney();
         pMoney[2].updateMoney();
         pMoney[3].updateMoney();
         
-        CPlayer.setRollDice(result);
-        notification.addNotification(board.Notify());
+        notification.addNotification(player.getColor(),board.Notify());
 
         if (bankrupted==3){
             gameEnd=true;
         }
 
-        CurrentPlayerIndex++;
-        if (CurrentPlayerIndex==4)
-            CurrentPlayerIndex=0;
+        
     }
-    
 }

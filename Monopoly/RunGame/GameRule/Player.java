@@ -107,6 +107,9 @@ public class Player {
 
   public void addChanceCard(Card card) {
     chanceCards.add(card);
+    if (card.getText() == "Get Out of Jail Free.") { 
+      addGetOutOfJailCard(card);
+    }
   }
 
   public void addCommunityChestCard(Card card) {
@@ -157,6 +160,14 @@ public class Player {
 
   public void setJailRollCount(int count){
     jailRollCount = count;
+  }
+  
+  public int getJailRollCount(){
+    return jailRollCount;
+  }
+
+  public void increaseJailRollCount() {
+    jailRollCount++;
   }
 
   public void useGetOutOfJailCard() {
@@ -232,12 +243,14 @@ public class Player {
 
   public void purchaseProperty(PropertySquare property) {
     int propertyPrice = property.getPrice();
-      balance -= propertyPrice;
+      subtractBalance(propertyPrice);
+      //balance -= propertyPrice;
       property.setOwner(this);
       ownedProperties.add(property);
     
   }
   
+
   public int getRailroadCount() {
     int railroadCount = 0;
     for (PropertySquare property : ownedProperties) {
@@ -310,12 +323,6 @@ public class Player {
   }
 
   public void releaseFromJail() {
-    if (hasGetOutOfJailCard()) {
-      useGetOutOfJailCard();
-      text = getName() + " used a Get Out of Jail Free card and got out of jail.";
-    } else {
-      text = getName() + " rolled doubles and got out of jail.";
-    }
     setInJail(false);
     setJailRollCount(0);
   }

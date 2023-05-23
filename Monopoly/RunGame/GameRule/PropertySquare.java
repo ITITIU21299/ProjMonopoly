@@ -81,6 +81,7 @@ public class PropertySquare extends MonopolySquare {
       owner.setBalance(owner.getBalance()+rent);
       //player.payRentTo(getOwner(), rent);
       JOptionPane.showMessageDialog(null, player.getName() + " has paid $" + rent + " as rent to " + getOwner().getName(),"Rent Payment", JOptionPane.INFORMATION_MESSAGE);
+      text = player.getName() + " lands on " + getName() + " and paid $" + rent + " as rent to " + getOwner().getName();
     }
   }
 
