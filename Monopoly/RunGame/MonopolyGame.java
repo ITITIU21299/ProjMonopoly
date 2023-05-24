@@ -148,13 +148,21 @@ public class MonopolyGame{
         gameEnd=false;
             diceButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
-                    if (!gameEnd){
+                    if (!gameEnd) {
+                        Player currentplayer = players[CurrentPlayerIndex];
                         if (CurrentPlayerIndex % 4 ==0){
                             notification.RemoveNotification();
                             CurrentPlayerIndex=0;
                         }
-
-                        Player currentplayer = players[CurrentPlayerIndex];
+                        if (currentplayer.getBalance()<=0){
+                        CurrentPlayerIndex++;
+                            if (CurrentPlayerIndex == 4)
+                                CurrentPlayerIndex = 0;
+                            notification.addNotification(currentplayer.getColor(),
+                                    currentplayer.getName() + " is bankrupted.             ");
+                        return;
+                        }
+                       
                         int result1 = random.nextInt(6) + 1;
                         int result2 = random.nextInt(6) + 1;
 
@@ -217,6 +225,9 @@ public class MonopolyGame{
             notification.addNotification(player.getColor(),board.Notify());
         }
         gameDisplay.setTokenPosition(player);
+        if (player.getBalance() <= 0) {
+            
+        }
 
         if (bankrupted==3){
             gameEnd=true;

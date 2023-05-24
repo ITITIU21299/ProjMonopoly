@@ -75,6 +75,10 @@ public class Player {
     return index;
   }
 
+  public void removeOwnedProperties() {
+    ownedProperties.clear();
+  }
+
   public List<PropertySquare> getOwnedProperties() {
     return ownedProperties;
   }
