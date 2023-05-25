@@ -28,6 +28,7 @@ public class Player {
   private int index;
   private boolean chanceCardGO;
   private boolean jailcheck;
+  private int numberofturn=0;
 
   public Player() {} //quick constructor
 
@@ -212,6 +213,14 @@ public class Player {
 
   public void setJailCheck(boolean jailcheck){
     this.jailcheck=jailcheck;
+  }
+
+  public void addNumberofTurn(){
+    numberofturn++;
+  }
+
+  public int getNumberofTurn(){
+    return numberofturn;
   }
 
   public void useChanceCard(Card card) {

@@ -77,6 +77,9 @@ public class PropertySquare extends MonopolySquare {
     }
     else if (owner != player) {
       int rent = getPrice()/2;
+      if (player.getNumberofTurn()>=10){
+        rent*=player.getNumberofTurn()/10;
+      }
       player.setBalance(player.getBalance()-rent);
       owner.setBalance(owner.getBalance()+rent);
       //player.payRentTo(getOwner(), rent);

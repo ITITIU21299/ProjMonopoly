@@ -77,6 +77,7 @@ public class Board {
     player.setPosition(newPostion);
     MonopolySquare currentSquare = squares.get(newPostion);
     currentSquare.doAction(player);
+    player.addNumberofTurn();
   }
   public String Notify(){
     MonopolySquare currentSquare = squares.get(newPostion);

@@ -156,6 +156,7 @@ public class MonopolyGame{
                         }
                         if (currentplayer.getBalance()<=0){
                         CurrentPlayerIndex++;
+                        currentplayer.removeOwnedProperties();
                             if (CurrentPlayerIndex == 4)
                                 CurrentPlayerIndex = 0;
                             notification.addNotification(currentplayer.getColor(),
