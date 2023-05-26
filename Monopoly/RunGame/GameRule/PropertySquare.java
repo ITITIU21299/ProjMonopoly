@@ -61,10 +61,9 @@ public class PropertySquare extends MonopolySquare {
   
   @Override
   public void doAction(Player player) {
-    if (getOwner()!= null){
-    if (owner.getIsBankrupted()){
+    if (getOwner()!= null && getOwner().getIsBankrupted()){
       setOwner(null);
-    }}
+    }
     if (getOwner() == null) {
       int choice = JOptionPane.showConfirmDialog(null, "Do you want to buy " + getName()+ " for $" + price + "?", "Buy Property",JOptionPane.YES_NO_OPTION);
       if (choice == JOptionPane.YES_OPTION) {
@@ -84,11 +83,13 @@ public class PropertySquare extends MonopolySquare {
       if (player.getNumberofTurn()>=10){
         rent*=player.getNumberofTurn()/10;
       }
-      player.setBalance(player.getBalance()-rent);
-      owner.setBalance(owner.getBalance()+rent);
-      //player.payRentTo(getOwner(), rent);
+      //player.setBalance(player.getBalance()-rent);
+      //owner.setBalance(owner.getBalance()+rent);
+      player.payRentTo(getOwner(), rent);
       JOptionPane.showMessageDialog(null, player.getName() + " has paid $" + rent + " as rent to " + getOwner().getName(),"Rent Payment", JOptionPane.INFORMATION_MESSAGE);
       text = player.getName() + " lands on " + getName() + " and paid $" + rent + " as rent to " + getOwner().getName();
+    } else if (owner == player){
+      text = player.getName() + " already owns this property.";
     }
   }
 

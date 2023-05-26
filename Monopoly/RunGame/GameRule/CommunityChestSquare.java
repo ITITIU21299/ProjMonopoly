@@ -11,6 +11,9 @@ public class CommunityChestSquare extends MonopolySquare{
   @Override
   public void doAction(Player player) {
     Card drawnCard = communityChestCardDeck.drawCommunityChestCard();
+    if (drawnCard == null){
+      text = "Community chest is empty";
+    } else
     if (drawnCard != null) {
       player.useCommnutityChestCard(drawnCard);
       text = player.getName() + " has drawn the card: " + drawnCard.getText();
