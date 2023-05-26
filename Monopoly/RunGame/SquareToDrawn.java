@@ -7,7 +7,7 @@ import Monopoly.RunGame.GameRule.Player;
 public class SquareToDrawn {
     private int coor;
     //Player[] players = new Player[50];
-    private int noPlayer = 0;
+     int noPlayer = 0;
 
     HashMap <Integer, Player> playersMap = new HashMap<Integer, Player>();
     
@@ -22,6 +22,9 @@ public class SquareToDrawn {
         playersMap.remove(player.getIndex(), player);
         this.coor = -1;
         noPlayer--;
+    }
+    public Player getPlayer (int index) {
+        return playersMap.get(index);
     }
     public int getNoPlayer () {
         return noPlayer;

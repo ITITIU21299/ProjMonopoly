@@ -17,7 +17,6 @@ import Monopoly.RunGame.GameRule.Player;
 
 public class GameDisplay extends JPanel{
     HashMap <Integer, Player> playersMap = new HashMap<Integer, Player>();
-    Optional<Integer> firstKey = playersMap.keySet().stream().findFirst();
     private int[] key = new int[5];
 
     private BufferedImage image;
@@ -68,14 +67,7 @@ public class GameDisplay extends JPanel{
             e.printStackTrace();
         }
     }
-    /* public void addPlayerToCoor (int playerIndex, int coor) {
-        cnt++;
-        boardCoor[coor][cnt] = playerIndex;
-    }
-    public void removePlayerFromCoor (int playerIndex, int coor) {
-        cnt--;
-        boardCoor[coor][cnt] = -1;
-    } */
+
     public void setInitialTokenPosition (Player player) {
         tokenX[player.getIndex()] = 725;
         tokenY[player.getIndex()] = 725;
@@ -108,6 +100,9 @@ public class GameDisplay extends JPanel{
         squareToDrawn[player.getPrevPosition()].removePlayer(player);
         squareToDrawn[coor].addPlayer(player);
         
+        //for (int i=0;i<=40;i++)
+        //System.out.print(i + "-" + squareToDrawn[i].noPlayer + " ");
+        //System.out.println();
         //playersMap = squareToDrawn[player.getPosition()].getMap();
 
         //System.out.println(coor + " " + squareToDrawn[coor].getCoor());
@@ -330,5 +325,13 @@ public class GameDisplay extends JPanel{
             //g.drawImage(tokenImage[i], tokenX[i], tokenY[i], this);
             check++;
         }
+    }
+
+    public void removePlayer (Player player) {
+            if (squareToDrawn[player.getPosition()].getPlayer(player.getIndex()) != null)
+                squareToDrawn[player.getPosition()].removePlayer(player);
+            if (squareToDrawn[player.getPrevPosition()].getPlayer(player.getIndex()) != null)
+                squareToDrawn[player.getPrevPosition()].removePlayer(player);
+        repaint();
     }
 }

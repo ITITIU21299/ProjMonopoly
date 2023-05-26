@@ -33,7 +33,7 @@ public class MonopolyGame{
         private int bankrupted;
         private final int fwidth=800, fheight=800;
         private boolean isPlayerTurn;
-        DiceLabel label = new DiceLabel();
+        DiceLabel diceLabel = new DiceLabel();
 
         Random random = new Random();
 
@@ -45,7 +45,7 @@ public class MonopolyGame{
         ImageIcon[] tokenImage = new ImageIcon[5];
         Color[] ptextcolor = new Color[5];
 
-        int CurrentPlayerIndex = 0;
+        int currentPlayerIndex = 0;
         
         Notification notification = new Notification();
         
@@ -86,6 +86,7 @@ public class MonopolyGame{
         StartButton.setIcon(icon);
         frame.setLayout(null);
         frame.getContentPane().setLayout(null);
+
         StartButton.setBounds(320, 800, 150, 60);
         StartButton.setVisible(true);
         frame.getContentPane().add(menuDisplay);
@@ -93,6 +94,7 @@ public class MonopolyGame{
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setSize(fwidth, fheight+100);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
     public boolean getGameEnd(){
         return gameEnd;
@@ -156,11 +158,10 @@ public class MonopolyGame{
             diceButton.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (!gameEnd) {
-                        Player currentplayer = players[CurrentPlayerIndex];
+                        Player currentPlayer = players[currentPlayerIndex];
                         if (bankrupted==3){
                             gameEnd=true;
                         }
-                
                         if (gameEnd==true){
                             JDialog dialog = new JDialog();
                             dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -196,58 +197,53 @@ public class MonopolyGame{
                             dialog.setVisible(true);
                         }
 
-                        if (CurrentPlayerIndex % 8 ==0){
+                        if (currentPlayerIndex % 8 ==0){
                             notification.RemoveNotification();
-                            CurrentPlayerIndex=0;
+                            currentPlayerIndex=0;
                         }
 
-                        if (currentplayer.getBalance()<=0){
-                        CurrentPlayerIndex++;
+                        if (currentPlayer.getBalance()<=0){
+                            currentPlayerIndex = (currentPlayerIndex + 1) % 4;
                         //currentplayer.setIsBankrupted(true);
                         //currentplayer.removeOwnedProperties();
-                            if (CurrentPlayerIndex == 4)
-                                CurrentPlayerIndex = 0;
-                            notification.addNotification(currentplayer.getColor(),
-                                    "                                  " + currentplayer.getName() + " is bankrupted.                              ");
-                        return;
+                            notification.addNotification(currentPlayer.getColor(), 
+                            "                            " + currentPlayer.getName() + " is bankrupted.                                  ");
+                            return;
                         }
                        
                         int result1 = random.nextInt(6) + 1;
                         int result2 = random.nextInt(6) + 1;
 
-                        currentplayer.setRollDice(result1, result2);
-                        label.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
+                        currentPlayer.setRollDice(result1, result2);
+                        diceLabel.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
 
-                        if (currentplayer.isInJail()) {
-                                board.movePlayer(currentplayer, 0);
-                                notification.addNotification(currentplayer.getColor(), board.Notify());
+                        if (currentPlayer.isInJail()) {
+                                board.movePlayer(currentPlayer, 0);
+                                notification.addNotification(currentPlayer.getColor(), board.Notify());
                                 //System.out.println(currentplayer.getName());
-
-                                if (currentplayer.isInJail() ) {
-                                    if (currentplayer.hasGetOutOfJailCard() == true) {
-                                        //notification.addNotification(currentplayer.getColor(), currentplayer.getName() + " has been in jail for " + currentplayer.getJailRollCount() + " turn(s)");
-                                    }
+                                if (currentPlayer.isInJail() ) {
                                     result1=0;
                                     result2=0;
                                 }   
                         }
                         
-                        PlayTurn(currentplayer,result1,result2);
+                        PlayTurn(currentPlayer,result1,result2);
 
-                        CurrentPlayerIndex = (CurrentPlayerIndex + 1) % 4;
+                        currentPlayerIndex = (currentPlayerIndex + 1) % 4;
                     }
                 }
             });
 
         JPanel dicePanel = new JPanel();
-        dicePanel.setBounds(fwidth+80, 550, 400, 250);
+        dicePanel.setBounds(fwidth+180, 550, 255, 250);
         dicePanel.setLayout(new BorderLayout(0, -150));
         dicePanel.add(diceButton, BorderLayout.SOUTH);
-        dicePanel.add(label, BorderLayout.CENTER);
+        dicePanel.add(diceLabel, BorderLayout.CENTER);
 
         frame.revalidate();
         frame.repaint();
         frame.setSize(fwidth+600, fheight+40);
+        frame.setLocationRelativeTo(null);
         frame.getContentPane().add(pMoney[0]);
         frame.getContentPane().add(pMoney[1]);
         frame.getContentPane().add(pMoney[2]);
@@ -264,7 +260,7 @@ public class MonopolyGame{
         //players[1].addGetOutOfJailCard(new Card("Get Out of Jail Free.", Card.CardType.CHANCE));
         //players[2].addGetOutOfJailCard(new Card("Get Out of Jail Free.", Card.CardType.CHANCE));
 
-        
+        //player.subtractBalance(500);
 
         if (result!=0) {
             board.movePlayer(player, result);
@@ -279,6 +275,7 @@ public class MonopolyGame{
         }
         if (player.getBalance() <= 0) {
             player.setIsBankrupted(true);
+            gameDisplay.removePlayer(player);
             bankrupted++;
         }
         //bankrupted=3;
