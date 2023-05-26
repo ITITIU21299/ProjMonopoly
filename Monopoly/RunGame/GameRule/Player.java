@@ -30,6 +30,7 @@ public class Player {
   private boolean jailcheck;
   private int numberofturn=0;
   private boolean bankrupted;
+  private boolean isBankrupted;
 
   public Player() {} //quick constructor
 
@@ -87,6 +88,14 @@ public class Player {
   
   public void setBankrupted(boolean bankrupted){
     this.bankrupted = bankrupted;
+  }
+
+  public void setIsBankrupted(boolean isBankrupted){
+    this.isBankrupted = isBankrupted;
+  }
+
+  public boolean getIsBankrupted(){
+    return isBankrupted;
   }
 
   public List<PropertySquare> getOwnedProperties() {

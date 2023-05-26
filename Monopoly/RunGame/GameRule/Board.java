@@ -73,11 +73,10 @@ public class Board {
     if (newPostion < currentPosition) {
       player.addBalance(200);
     }
-
     player.setPosition(newPostion);
+    player.addNumberofTurn();
     MonopolySquare currentSquare = squares.get(newPostion);
     currentSquare.doAction(player);
-    player.addNumberofTurn();
   }
   public String Notify(){
     MonopolySquare currentSquare = squares.get(newPostion);

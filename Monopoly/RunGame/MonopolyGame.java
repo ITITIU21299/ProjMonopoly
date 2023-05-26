@@ -184,10 +184,10 @@ public class MonopolyGame{
                             JButton restartButton = new JButton("Restart");
                 
                             restartButton.addActionListener(e2 -> {
-                                // Handle restart button click event
                                 dialog.dispose();
                                 startNewGame();
                             });
+
                             JPanel buttonPanel = new JPanel();
                             buttonPanel.setLayout(new FlowLayout());
                             buttonPanel.add(restartButton);
@@ -196,18 +196,19 @@ public class MonopolyGame{
                             dialog.setVisible(true);
                         }
 
-                        if (CurrentPlayerIndex % 4 ==0){
+                        if (CurrentPlayerIndex % 8 ==0){
                             notification.RemoveNotification();
                             CurrentPlayerIndex=0;
                         }
-                        
+
                         if (currentplayer.getBalance()<=0){
                         CurrentPlayerIndex++;
-                        currentplayer.removeOwnedProperties();
+                        //currentplayer.setIsBankrupted(true);
+                        //currentplayer.removeOwnedProperties();
                             if (CurrentPlayerIndex == 4)
                                 CurrentPlayerIndex = 0;
                             notification.addNotification(currentplayer.getColor(),
-                                    "             "+currentplayer.getName() + " is bankrupted.             ");
+                                    "                                  " + currentplayer.getName() + " is bankrupted.                              ");
                         return;
                         }
                        
@@ -263,19 +264,22 @@ public class MonopolyGame{
         //players[1].addGetOutOfJailCard(new Card("Get Out of Jail Free.", Card.CardType.CHANCE));
         //players[2].addGetOutOfJailCard(new Card("Get Out of Jail Free.", Card.CardType.CHANCE));
 
-        for (int i=0;i<=3;i++) {
-            pMoney[i].updateMoney();
-        }
+        
 
         if (result!=0) {
             board.movePlayer(player, result);
             notification.addNotification(player.getColor(),"                               "+player.getName()+" move "+ result + " steps                                      ");
             notification.addNotification(player.getColor(),board.Notify());
         }
+        
         gameDisplay.setTokenPosition(player);
-        if (player.getBalance() <= 0 && player.getBankrupted()) {
+
+        for (int i=0;i<=3;i++) {
+            pMoney[i].updateMoney();
+        }
+        if (player.getBalance() <= 0) {
+            player.setIsBankrupted(true);
             bankrupted++;
-            player.setBankrupted(false);
         }
         //bankrupted=3;
         

@@ -61,6 +61,10 @@ public class PropertySquare extends MonopolySquare {
   
   @Override
   public void doAction(Player player) {
+    if (getOwner()!= null){
+    if (owner.getIsBankrupted()){
+      setOwner(null);
+    }}
     if (getOwner() == null) {
       int choice = JOptionPane.showConfirmDialog(null, "Do you want to buy " + getName()+ " for $" + price + "?", "Buy Property",JOptionPane.YES_NO_OPTION);
       if (choice == JOptionPane.YES_OPTION) {
