@@ -7,14 +7,20 @@ import Monopoly.RunGame.GameRule.JailSquare;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.FlowLayout;
 import java.awt.Image;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
+import javax.swing.JDialog;
 import javax.swing.JFrame;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
+import javax.swing.SwingConstants;
+
 import java.awt.event.ActionListener;
 import java.util.Random;
+import java.awt.Font;
 
 
 import javax.swing.Icon;
@@ -44,6 +50,7 @@ public class MonopolyGame{
         Notification notification = new Notification();
         
         int count=0;
+        int winnerIndex;
 
         
         Player[] players = {new Player("Player 1",1000,0,"Monopoly/res/token_car.png", new Color(255, 0, 0), 0),
@@ -150,17 +157,57 @@ public class MonopolyGame{
                 public void actionPerformed(ActionEvent e) {
                     if (!gameEnd) {
                         Player currentplayer = players[CurrentPlayerIndex];
+                        if (bankrupted==3){
+                            gameEnd=true;
+                        }
+                
+                        if (gameEnd==true){
+                            JDialog dialog = new JDialog();
+                            dialog.setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
+                            dialog.setSize(400, 200);
+                            dialog.setLocationRelativeTo(null);
+                            dialog.setModal(true);
+                            
+                            
+
+                            for (int i=0; i<4; i++){
+                                if (players[i].getBalance()>0){
+                                    winnerIndex=i;
+                                }
+                            }
+
+                            JLabel label = new JLabel(players[winnerIndex].getName()+" won the game!");
+                            label.setFont(new Font("Arial", Font.BOLD, 20));
+                            label.setHorizontalAlignment(SwingConstants.CENTER);
+                            dialog.add(label);
+                
+                            JButton restartButton = new JButton("Restart");
+                
+                            restartButton.addActionListener(e2 -> {
+                                // Handle restart button click event
+                                dialog.dispose();
+                                startNewGame();
+                            });
+                            JPanel buttonPanel = new JPanel();
+                            buttonPanel.setLayout(new FlowLayout());
+                            buttonPanel.add(restartButton);
+                
+                            dialog.add(buttonPanel, BorderLayout.SOUTH);
+                            dialog.setVisible(true);
+                        }
+
                         if (CurrentPlayerIndex % 4 ==0){
                             notification.RemoveNotification();
                             CurrentPlayerIndex=0;
                         }
+                        
                         if (currentplayer.getBalance()<=0){
                         CurrentPlayerIndex++;
                         currentplayer.removeOwnedProperties();
                             if (CurrentPlayerIndex == 4)
                                 CurrentPlayerIndex = 0;
                             notification.addNotification(currentplayer.getColor(),
-                                    currentplayer.getName() + " is bankrupted.             ");
+                                    "             "+currentplayer.getName() + " is bankrupted.             ");
                         return;
                         }
                        
@@ -226,12 +273,11 @@ public class MonopolyGame{
             notification.addNotification(player.getColor(),board.Notify());
         }
         gameDisplay.setTokenPosition(player);
-        if (player.getBalance() <= 0) {
-            
+        if (player.getBalance() <= 0 && player.getBankrupted()) {
+            bankrupted++;
+            player.setBankrupted(false);
         }
-
-        if (bankrupted==3){
-            gameEnd=true;
-        }
+        //bankrupted=3;
+        
     }
 }

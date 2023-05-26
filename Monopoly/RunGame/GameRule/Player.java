@@ -29,6 +29,7 @@ public class Player {
   private boolean chanceCardGO;
   private boolean jailcheck;
   private int numberofturn=0;
+  private boolean bankrupted;
 
   public Player() {} //quick constructor
 
@@ -77,11 +78,23 @@ public class Player {
   }
 
   public void removeOwnedProperties() {
-    ownedProperties.clear();
+    ownedProperties = null;
+  }
+
+  public boolean getBankrupted(){
+    return bankrupted;
+  }
+  
+  public void setBankrupted(boolean bankrupted){
+    this.bankrupted = bankrupted;
   }
 
   public List<PropertySquare> getOwnedProperties() {
     return ownedProperties;
+  }
+
+  public void setOwnedProperties(List<PropertySquare> ownedProperties) {
+    this.ownedProperties = ownedProperties;
   }
 
   public List<Card> getChanceCards(){
@@ -90,10 +103,6 @@ public class Player {
 
   public List<Card> getCommuityChestCards() {
     return communityChestCards;
-  }
-
-  public void setOwnedProperties(List<PropertySquare> ownedProperties) {
-    this.ownedProperties = ownedProperties;
   }
 
   public void setName(String name) {
