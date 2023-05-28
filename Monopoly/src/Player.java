@@ -26,7 +26,7 @@ public class Player {
   private boolean bankrupted;
   private boolean isBankrupted;
 
-  public Player() {} //quick constructor
+  public Player() {}
 
   public Player(String name, int balance, int position, String token, Color color, int index) {
     this.name = name;

@@ -4,7 +4,6 @@ import java.util.HashMap;
 
 public class SquareToDrawn {
     private int coor;
-    //Player[] players = new Player[50];
      int noPlayer = 0;
 
     HashMap <Integer, Player> playersMap = new HashMap<Integer, Player>();

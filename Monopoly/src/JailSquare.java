@@ -33,15 +33,15 @@ public class JailSquare extends MonopolySquare {
         if (player.getJailRollCount() == 3) {
           player.subtractBalance(50);
           player.releaseFromJail();
-          text = "                " + player.getName() + " is out of jail after 3 turns and paid $50 fine.                       ";
+          text = "                   " + player.getName() + " is out of jail after 3 turns and paid $50 fine.                       ";
 
         } else
         {
-          text = "                " + player.getName() + " has been in jail for " + player.getJailRollCount() + " turn(s).                        ";
+          text = "                     " + player.getName() + " has been in jail for " + player.getJailRollCount() + " turn(s).                        ";
         }
       }
     } else {
-      text = "                     " + player.getName() + " is just visiting the jail.                           ";
+      text = "                        " + player.getName() + " is just visiting the jail.                           ";
     }
   }
 
