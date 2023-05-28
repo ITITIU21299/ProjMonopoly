@@ -183,7 +183,7 @@ public class MonopolyGame{
                             dialog.setVisible(true);
                         }
 
-                        if (notificationCount==7){
+                        if (notificationCount==6){
                             notification.RemoveNotification();
                             notificationCount=0;
                         }
@@ -240,7 +240,7 @@ public class MonopolyGame{
     
         if (result!=0) {
             board.movePlayer(player, result);
-            notification.addNotification(player.getColor(),"                          " + player.getName()+" move "+ result + " steps                                         ");
+            notification.addNotification(player.getColor(),"                                  " + player.getName()+" move "+ result + " steps                                         ");
             notification.addNotification(player.getColor(),board.Notify());
         }
 

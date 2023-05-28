@@ -41,7 +41,7 @@ public class JailSquare extends MonopolySquare {
         }
       }
     } else {
-      text = player.getName() + " is just visiting the jail.";
+      text = player.getName() + " is just visiting the jail.                        ";
     }
   }
 
