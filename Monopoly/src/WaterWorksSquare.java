@@ -19,6 +19,9 @@ public class WaterWorksSquare extends PropertySquare {
   
   @Override
     public void doAction(Player player) {
+      if (getOwner()!= null && getOwner().getIsBankrupted()){
+        setOwner(null);
+      }
       if (getOwner() == null) {
         int choice = JOptionPane.showConfirmDialog(null, "Do you want to buy Water Works?", "Buy Property", JOptionPane.YES_NO_OPTION);
         if (choice == JOptionPane.YES_OPTION) {
