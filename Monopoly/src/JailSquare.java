@@ -13,7 +13,6 @@ public class JailSquare extends MonopolySquare {
   public void doAction(Player player) {
     if (player.isInJail()) {
       player.increaseJailRollCount();
-      // If choose Yes or doesn't have
       if (player.hasGetOutOfJailCard()) {
         choice = JOptionPane.showConfirmDialog(
             null, "Do you want to use your Get Out of Jail Free card ?", "Jail", JOptionPane.YES_NO_OPTION);
@@ -47,7 +46,6 @@ public class JailSquare extends MonopolySquare {
 
   @Override
   public String getNotification(){
-    //System.out.println(text);
     return text;
   }
 }

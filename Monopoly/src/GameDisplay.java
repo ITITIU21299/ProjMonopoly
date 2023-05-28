@@ -294,11 +294,6 @@ public class GameDisplay extends JPanel{
                 }
             }
         } 
-        if (check <=4)
-        for (int i = 0; i < 4; i++) {
-            //g.drawImage(tokenImage[i], tokenX[i], tokenY[i], this);
-            check++;
-        }
     }
 
     public void removePlayer (Player player) {
