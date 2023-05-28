@@ -1,6 +1,6 @@
 package Monopoly;
 
-import Monopoly.RunGame.MonopolyGame;
+import Monopoly.src.MonopolyGame;
 
 public class main {
     public static void main(String[] args) {
