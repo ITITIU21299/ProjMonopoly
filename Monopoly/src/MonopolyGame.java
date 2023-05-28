@@ -240,7 +240,7 @@ public class MonopolyGame{
     
         if (result!=0) {
             board.movePlayer(player, result);
-            notification.addNotification(player.getColor(),"                                  " + player.getName()+" move "+ result + " steps                                         ");
+            notification.addNotification(player.getColor(),"                                       " + player.getName()+" move "+ result + " steps                                         ");
             notification.addNotification(player.getColor(),board.Notify());
         }
 
