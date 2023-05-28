@@ -6,7 +6,7 @@ public class GoSquare extends MonopolySquare {
   @Override
   public void doAction(Player player) {
     player.addBalance(GO_SQUARE_REWARD);
-    text = "                          " + player.getName() + " landed on GO.                              ";
+    text = "                             " + player.getName() + " landed on GO.                              ";
   }
   public String getNotification(){
     return text;
