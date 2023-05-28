@@ -297,10 +297,10 @@ public class GameDisplay extends JPanel{
     }
 
     public void removePlayer (Player player) {
-            if (squareToDrawn[player.getPosition()].getPlayer(player.getIndex()) != null)
-                squareToDrawn[player.getPosition()].removePlayer(player);
-            if (squareToDrawn[player.getPrevPosition()].getPlayer(player.getIndex()) != null)
-                squareToDrawn[player.getPrevPosition()].removePlayer(player);
+        for (int i=0;i<=40;i++) {
+            if (squareToDrawn[i].getPlayer(i) != null)
+                squareToDrawn[i].removePlayer(player);
+        }
         repaint();
     }
 }
