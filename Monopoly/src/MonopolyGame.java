@@ -44,6 +44,7 @@ public class MonopolyGame{
         
         int count=0;
         int winnerIndex;
+        int notificationCount;
 
         
         Player[] players = {new Player("Player 1",1000,0,"Monopoly/res/token_car.png", new Color(255, 0, 0), 0),
@@ -182,9 +183,9 @@ public class MonopolyGame{
                             dialog.setVisible(true);
                         }
 
-                        if (currentPlayerIndex % 8 ==0){
+                        if (notificationCount==7){
                             notification.RemoveNotification();
-                            currentPlayerIndex=0;
+                            notificationCount=0;
                         }
 
                         if (currentPlayer.getBalance()<=0){
@@ -239,9 +240,11 @@ public class MonopolyGame{
     
         if (result!=0) {
             board.movePlayer(player, result);
-            notification.addNotification(player.getColor(),"                          " + player.getName()+" move "+ result + " steps                          ");
+            notification.addNotification(player.getColor(),"                          " + player.getName()+" move "+ result + " steps                                         ");
             notification.addNotification(player.getColor(),board.Notify());
         }
+
+        notificationCount++;
         
         gameDisplay.setTokenPosition(player);
 

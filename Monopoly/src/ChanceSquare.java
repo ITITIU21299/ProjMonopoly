@@ -12,7 +12,7 @@ public class ChanceSquare extends MonopolySquare{
   public void doAction(Player player) {
     Card drawnCard = chanceCardDeck.drawChanceCard();
     if (drawnCard == null){
-      text = "                          Chance card is empty                          ";
+      text = "                              Chance card is empty                             ";
     } else
     if (drawnCard != null) {
       player.useChanceCard(drawnCard);
