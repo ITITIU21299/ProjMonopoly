@@ -190,6 +190,7 @@ public class MonopolyGame{
 
                         if (currentPlayer.getBalance()<=0){
                             currentPlayerIndex = (currentPlayerIndex + 1) % 4;
+                            notificationCount++;
                             notification.addNotification(currentPlayer.getColor(),"                          " + currentPlayer.getName() + " is bankrupted.                          ");
                             return;
                         }
