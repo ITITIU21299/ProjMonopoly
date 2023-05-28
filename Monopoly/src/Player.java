@@ -22,11 +22,12 @@ public class Player {
   private int index;
   private boolean chanceCardGO;
   private boolean jailcheck;
-  private int numberofturn=0;
+  private int numberofturn = 0;
   private boolean bankrupted;
   private boolean isBankrupted;
 
-  public Player() {}
+  public Player() {
+  }
 
   public Player(String name, int balance, int position, String token, Color color, int index) {
     this.name = name;
@@ -44,7 +45,7 @@ public class Player {
     hasRolledDouble = false;
   }
 
-  public String getToken(){
+  public String getToken() {
     return token;
   }
 
@@ -67,7 +68,7 @@ public class Player {
   public Color getColor() {
     return color;
   }
-  
+
   public int getIndex() {
     return index;
   }
@@ -76,19 +77,19 @@ public class Player {
     ownedProperties = null;
   }
 
-  public boolean getBankrupted(){
+  public boolean getBankrupted() {
     return bankrupted;
   }
-  
-  public void setBankrupted(boolean bankrupted){
+
+  public void setBankrupted(boolean bankrupted) {
     this.bankrupted = bankrupted;
   }
 
-  public void setIsBankrupted(boolean isBankrupted){
+  public void setIsBankrupted(boolean isBankrupted) {
     this.isBankrupted = isBankrupted;
   }
 
-  public boolean getIsBankrupted(){
+  public boolean getIsBankrupted() {
     return isBankrupted;
   }
 
@@ -100,7 +101,7 @@ public class Player {
     this.ownedProperties = ownedProperties;
   }
 
-  public List<Card> getChanceCards(){
+  public List<Card> getChanceCards() {
     return chanceCards;
   }
 
@@ -121,13 +122,13 @@ public class Player {
     this.position = newPosition;
   }
 
-  public void setPrevPosition (int position) {
+  public void setPrevPosition(int position) {
     prevposition = position;
   }
 
   public void addChanceCard(Card card) {
     chanceCards.add(card);
-    if (card.getText() == "Get Out of Jail Free.") { 
+    if (card.getText() == "Get Out of Jail Free.") {
       addGetOutOfJailCard(card);
     }
   }
@@ -178,11 +179,11 @@ public class Player {
     return !getOutOfJailCards.isEmpty();
   }
 
-  public void setJailRollCount(int count){
+  public void setJailRollCount(int count) {
     jailRollCount = count;
   }
-  
-  public int getJailRollCount(){
+
+  public int getJailRollCount() {
     return jailRollCount;
   }
 
@@ -219,19 +220,19 @@ public class Player {
     return chanceCardGO;
   }
 
-  public boolean JailCheck(){
+  public boolean JailCheck() {
     return jailcheck;
   }
 
-  public void setJailCheck(boolean jailcheck){
-    this.jailcheck=jailcheck;
+  public void setJailCheck(boolean jailcheck) {
+    this.jailcheck = jailcheck;
   }
 
-  public void addNumberofTurn(){
+  public void addNumberofTurn() {
     numberofturn++;
   }
 
-  public int getNumberofTurn(){
+  public int getNumberofTurn() {
     return numberofturn;
   }
 
@@ -241,8 +242,8 @@ public class Player {
       if (cardText.equals("Advance to GO. Collect 200$.")) {
         moveToGoChaneCard();
         addBalance(200);
-      } else if (cardText.equals("Go Back 3 Spaces.")) {
-        moveBack(3);
+      } else if (cardText.equals("Bank pays you dividend of $50.")) {
+        addBalance(50);
       } else if (cardText.equals("Speeding fine $15.")) {
         subtractBalance(15);
       } else if (cardText.equals("Get Out of Jail.")) {
@@ -259,17 +260,13 @@ public class Player {
       if (cardText.equals("Advance to GO. Collect 200$.")) {
         moveToGoChaneCard();
         addBalance(200);
-      }
-      else if (cardText.equals("Bank error in your favor. Collect $200.")) {
+      } else if (cardText.equals("Bank error in your favor. Collect $200.")) {
         addBalance(200);
-      }
-      else if (cardText.equals("Get Out of Jail.")) {
+      } else if (cardText.equals("Get Out of Jail.")) {
         addGetOutOfJailCard(card);
-      }
-      else if (cardText.equals("Receive $25 consultancy fee.")) {
+      } else if (cardText.equals("Receive $25 consultancy fee.")) {
         addBalance(25);
-      }
-      else if (cardText.equals("You inherit $100.")) {
+      } else if (cardText.equals("You inherit $100.")) {
         addBalance(100);
       }
     }
@@ -277,12 +274,11 @@ public class Player {
 
   public void purchaseProperty(PropertySquare property) {
     int propertyPrice = property.getPrice();
-      subtractBalance(propertyPrice);
-      property.setOwner(this);
-      ownedProperties.add(property);
-    
+    subtractBalance(propertyPrice);
+    property.setOwner(this);
+    ownedProperties.add(property);
+
   }
-  
 
   public int getRailroadCount() {
     int railroadCount = 0;
@@ -331,28 +327,29 @@ public class Player {
       System.out.println("Insuffiecient balance to buy " + railroad.getName());
     }
   }
-  
+
   public int getRollDice() {
     return diceResult;
   }
 
   public void setRollDice(int result1, int result2) {
-    this.diceResult=result1 + result2;
+    this.diceResult = result1 + result2;
     setHasRollDouble(result1 == result2);
   }
 
   public boolean isInJail() {
     return inJail;
   }
-  
+
   public void setInJail(boolean inJail) {
     this.inJail = inJail;
-    if (inJail == true) toJail();
+    if (inJail == true)
+      toJail();
   }
 
-  public void toJail () {
+  public void toJail() {
     int tmp = prevposition;
-    this.setPosition(10); 
+    this.setPosition(10);
     this.setPrevPosition(tmp);
   }
 

@@ -15,7 +15,7 @@ public class CardDeck {
     random = new Random();
 
     chanceCards.add(new Card("Advance to GO. Collect 200$.", Card.CardType.CHANCE));
-    chanceCards.add(new Card("Go Back 3 Spaces.", Card.CardType.CHANCE));
+    chanceCards.add(new Card("Bank pays you dividend of $50.", Card.CardType.CHANCE));
     chanceCards.add(new Card("Speeding fine $15.", Card.CardType.CHANCE));
     chanceCards.add(new Card("Get Out of Jail Free.", Card.CardType.CHANCE));
     chanceCards.add(new Card("Your building loan matures. Collect $150.", Card.CardType.CHANCE));
@@ -36,14 +36,13 @@ public class CardDeck {
       return null;
     }
   }
-  
+
   public Card drawCommunityChestCard() {
     if (!communityChestCards.isEmpty()) {
       int randomIndex = random.nextInt(communityChestCards.size());
       Card drawnCard = communityChestCards.remove(randomIndex);
       return drawnCard;
-    }
-    else {
+    } else {
       return null;
     }
   }
