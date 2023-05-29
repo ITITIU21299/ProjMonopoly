@@ -39,7 +39,7 @@ public class RailroadSquare extends PropertySquare {
         int rent = calculateRent();
         player.payRentTo(getOwner(), rent);
         JOptionPane.showMessageDialog(null,
-            player.getName() + " has paid " + rent + " as rent for landing on " + getName());
+            player.getName() + " has paid $" + rent + " as rent for landing on " + getName());
         text = player.getName() + " has paid $" + rent + " as rent to " + getOwner().getName();
         } else {
           text = player.getName() + " stands on their own property, " + getName();

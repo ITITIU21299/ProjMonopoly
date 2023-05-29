@@ -40,8 +40,8 @@ public class WaterWorksSquare extends PropertySquare {
           int rent = calculateRent(diceRoll);
           player.payRentTo(getOwner(), rent);
           JOptionPane.showMessageDialog(null,
-              player.getName() + " has paid " + rent + " as rent for landing on Water Works.");
-          text = player.getName() + " has paid " + rent + " as rent for landing on Water Works.";
+              player.getName() + " has paid $" + rent + " as rent for landing on Water Works.");
+          text = player.getName() + " has paid $" + rent + " as rent for landing on Water Works.";
       } else {
         JOptionPane.showMessageDialog(null, player.getName() + " landed on Water Works");
         text = player.getName() + " landed on Water Works";
