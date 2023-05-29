@@ -166,9 +166,7 @@ public class MonopolyGame {
 
                     int result1 = random.nextInt(6) + 1;
                     int result2 = random.nextInt(6) + 1;
-                    result1 = 1;
                     diceLabel.setIcon(new TwoIcon(dIcon[result1], dIcon[result2]));
-                    result2 = 0;
                     currentPlayer.setRollDice(result1, result2);
                     if (currentPlayer.isInJail()) {
                         board.movePlayer(currentPlayer, 0);
